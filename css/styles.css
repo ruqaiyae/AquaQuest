@@ -73,6 +73,27 @@ body {
   height: 8rem;
 }
 
+.hero-section {
+  padding: 0 3rem;
+}
+
+.hero-text-container {
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.hero-text {
+  font-family: Alegreya, serif;
+  font-size: 1.4rem;
+  color: #0999ed;
+  letter-spacing: 0.07rem;
+  margin: 0;
+}
+
+.hero-img {
+  width: 100%;
+}
+
 @media only screen and (width >= 768px) {
   .header-logo {
     height: 18rem;
@@ -96,5 +117,50 @@ body {
   .logo-container {
     position: absolute;
     padding-left: 5rem;
+  }
+
+  .hero-section {
+    padding: 0 8rem;
+  }
+
+  .hero-text-container {
+    margin-top: 3rem;
+  }
+
+  .hero-text {
+    font-size: 6rem;
+    letter-spacing: 0.2rem;
+    margin: 0;
+  }
+
+  .hero-img {
+    margin: 2rem auto;
+  }
+
+  #mobile-hero-img {
+    display: none;
+  }
+
+  @media screen and (width >= 768px) and (width <= 1140px) {
+    .hero-text {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media screen and (width < 992px) {
+  .logo-container {
+    position: absolute;
+    padding-left: 0;
+  }
+
+  @media screen and (width < 768px) {
+    #desktop-hero-img {
+      display: none;
+    }
+
+    .carousel-hidden {
+      display: none;
+    }
   }
 }
