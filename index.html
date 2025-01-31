@@ -27,7 +27,7 @@
     <header class="nav-container">
       <div class="nav-bar flex">
         <div class="col-nav flex nav-links">
-          <a class="nav-element cursor">Home</a>
+          <a class="nav-element cursor" data-view="home-page">Home</a>
           <a class="nav-element cursor">Explore</a>
           <a class="nav-element cursor">Learn</a>
           <a class="nav-element cursor">Log</a>
@@ -42,24 +42,121 @@
       </div>
     </header>
 
-    <!-- Section hero-text & hero-img -->
-    <section class="hero-section">
-      <div class="flex hero-text-container">
-        <p class="hero-text">Explore. Dive. Log. Repeat.</p>
-      </div>
-      <div class="flex hero-img-wrapper">
-        <img
-          src="./images/mobile-hero.png"
-          alt="hero image"
-          class="hero-img"
-          id="mobile-hero-img" />
-        <img
-          src="./images/desktop-hero.png"
-          alt="hero image"
-          class="hero-img"
-          id="desktop-hero-img" />
-      </div>
-    </section>
+    <!-- HomePage -->
+    <div data-view="home-page">
+      <!-- Section hero-text & hero-img -->
+      <section class="hero-section">
+        <div class="flex hero-text-container">
+          <p class="hero-text">Explore. Dive. Log. Repeat.</p>
+        </div>
+        <div class="flex hero-img-wrapper">
+          <img
+            src="./images/mobile-hero.png"
+            alt="hero image"
+            class="hero-img"
+            id="mobile-hero-img" />
+          <img
+            src="./images/desktop-hero.png"
+            alt="hero image"
+            class="hero-img"
+            id="desktop-hero-img" />
+        </div>
+      </section>
+
+      <!-- Section to create carousel for dive sites -->
+      <section class="carousel-section">
+        <div>
+          <h2 class="carousel-title">Popular Dive Sites</h2>
+        </div>
+        <div class="carousel-container">
+          <div class="flex flex-center carousel-row">
+            <div class="">
+              <i class="fa-solid fa-angle-left angle"></i>
+            </div>
+            <div class="flex carousel-card-wrapper">
+              <div class="carousel-card">
+                <img
+                  src="./images/dive-sites/Great-Blue-Hole-Belize.jpg"
+                  alt="Great Blue Hole, Belize"
+                  class="carousel-img" />
+                <p class="carousel-caption">Great Blue Hole, Belize</p>
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="./images/dive-sites/Galapagos-Islands-Ecuador.jpg"
+                  alt="Galapagos Islands, Ecuador"
+                  class="carousel-img" />
+                <p class="carousel-caption">Galapagos Islands, Ecuador</p>
+              </div>
+              <div class="carousel-card">
+                <img
+                  src="./images/dive-sites/Raja-Ampat-Indonesia.jpg"
+                  alt="Raja Ampat, Indonesia"
+                  class="carousel-img" />
+                <p class="carousel-caption">Raja Ampat, Indonesia</p>
+              </div>
+              <div class="carousel-card carousel-hidden">
+                <img
+                  src="./images/dive-sites/Anilao-Philippines.jpg"
+                  alt="Anilao, Philippines"
+                  class="carousel-img" />
+                <p class="carousel-caption">Anilao, Philippines</p>
+              </div>
+              <div class="carousel-card carousel-hidden">
+                <img
+                  src="./images/dive-sites/Baa-Atoll-Maldives.jpg"
+                  alt="Baa Atoll, Maldives"
+                  class="carousel-img" />
+                <p class="carousel-caption">Baa Atoll, Maldives</p>
+              </div>
+              <div
+                class="carousel-card carousel-hidden carousel-hidden-desktop">
+                <img
+                  src="./images/dive-sites/Socorro-Islands-Mexico.jpg"
+                  alt="Socorro Islands, Mexico"
+                  class="carousel-img" />
+                <p class="carousel-caption">Socorro Islands, Mexico</p>
+              </div>
+              <div
+                class="carousel-card carousel-hidden carousel-hidden-desktop">
+                <img
+                  src="./images/dive-sites/The-Red-Sea-Egypt.jpg"
+                  alt="The Red Sea, Egypt"
+                  class="carousel-img" />
+                <p class="carousel-caption">The Red Sea, Egypt</p>
+              </div>
+              <div
+                class="carousel-card carousel-hidden carousel-hidden-desktop">
+                <img
+                  src="./images/dive-sites/Bligh-Water-Fiji.jpg"
+                  alt="Bligh Water, Fiji"
+                  class="carousel-img" />
+                <p class="carousel-caption">Bligh Water, Fiji</p>
+              </div>
+              <div
+                class="carousel-card carousel-hidden carousel-hidden-desktop">
+                <img
+                  src="./images/dive-sites/Tulagi-Island-Solomon-Islands.jpg"
+                  alt="Tulagi Island, Solomon Islands"
+                  class="carousel-img" />
+                <p class="carousel-caption">Tulagi Island, Solomon Islands</p>
+              </div>
+              <div
+                class="carousel-card carousel-hidden carousel-hidden-desktop">
+                <img
+                  src="./images/dive-sites/Tahiti-Moorea-French-Polynesia.jpg"
+                  alt="Mo'orea, French Polynesia"
+                  class="carousel-img" />
+                <p class="carousel-caption">Mo'orea, French Polynesia</p>
+              </div>
+            </div>
+            <div class="">
+              <i class="fa-solid fa-angle-right angle"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
     <main class="main-container"></main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>

@@ -33,27 +33,51 @@ body {
   justify-content: end;
   align-items: center;
   gap: 1.3rem;
+
+  @media screen and (width >= 768px) {
+    margin-right: 5rem;
+    gap: 4vw;
+  }
 }
 
 .nav-element {
   padding: 2rem 0;
   font-size: 1.2rem;
   color: #f7f9fc;
+  transform: scale(1);
+
+  @media screen and (width >= 768px) {
+    padding: 3rem 0;
+    font-size: 2.2rem;
+  }
 }
 
 .nav-element:hover {
   color: #0999ed;
-  text-decoration: underline;
+}
+
+.nav-element:active {
+  color: #ffd166;
 }
 
 .active-nav-element {
   color: #ffd166;
+  transform: scale(1.2);
+}
+
+.nav-icon-wrapper {
+  align-items: center;
 }
 
 .icon {
   font-size: 1.2rem;
   color: #f7f9fc;
   padding: 0.5rem;
+
+  @media screen and (width >= 768px) {
+    font-size: 2.2rem;
+    padding: 1.5rem;
+  }
 }
 
 .user-icon {
@@ -61,25 +85,43 @@ body {
 }
 
 .active-icon {
-  color: #ffd166;
+  color: #e63946;
+  font-size: 2.8rem;
 }
 
 .logo-container {
   position: absolute;
   top: 8px;
+
+  @media screen and (width >= 768px) {
+    position: absolute;
+    padding-left: 5rem;
+  }
 }
 
 .header-logo {
   height: 8rem;
+
+  @media screen and (width >= 768px) {
+    height: 18rem;
+  }
 }
 
 .hero-section {
   padding: 0 3rem;
+
+  @media screen and (width >= 768px) {
+    padding: 0 8rem;
+  }
 }
 
 .hero-text-container {
   justify-content: center;
   margin: 1rem 0;
+
+  @media screen and (width >=768px) {
+    margin-top: 3rem;
+  }
 }
 
 .hero-text {
@@ -88,63 +130,102 @@ body {
   color: #0999ed;
   letter-spacing: 0.07rem;
   margin: 0;
+
+  @media screen and (width >= 768px) {
+    font-size: 6rem;
+    letter-spacing: 0.2rem;
+
+    @media screen and (width <= 1140px) {
+      font-size: 3rem;
+    }
+  }
 }
 
 .hero-img {
   width: 100%;
+
+  @media screen and (width >= 768px) {
+    margin: 2rem auto;
+  }
+}
+
+.carousel-section {
+  margin: 0 2rem;
+
+  @media screen and (width >= 768px) {
+    margin: 0 4rem;
+  }
+}
+
+.carousel-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ff6f61;
+  padding-left: 1rem;
+  margin: 1.2rem 0 0;
+
+  @media screen and (width >= 768px) {
+    font-size: 2.8rem;
+    padding: 2rem 5rem 0;
+  }
+}
+
+.carousel-container {
+  display: flex;
+}
+
+.carousel-row {
+  flex-basis: 100%;
+}
+
+.angle {
+  cursor: pointer;
+  margin-bottom: 1.2rem;
+
+  @media screen and (width >= 768px) {
+    margin-bottom: 6rem;
+    font-size: 3rem;
+    color: #003b73;
+  }
+}
+
+.carousel-card {
+  padding: 1.1rem 1.1rem 0;
+
+  @media screen and (width >= 768px) {
+    padding: 2.1rem;
+  }
+}
+
+.carousel-img {
+  width: 23vw;
+  height: 23vw;
+  border-radius: 0.3rem;
+
+  @media screen and (width >= 768px) {
+    width: 15vw;
+    height: 15vw;
+  }
+}
+
+.carousel-caption {
+  color: #0999ed;
+  font-size: 0.6rem;
+
+  @media screen and (width >= 768px) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 15vw;
+  }
 }
 
 @media only screen and (width >= 768px) {
-  .header-logo {
-    height: 18rem;
-  }
-
-  .nav-links {
-    margin-right: 5rem;
-    gap: 4vw;
-  }
-
-  .nav-element {
-    padding: 3rem 0;
-    font-size: 2.2rem;
-  }
-
-  .icon {
-    font-size: 2.2rem;
-    padding: 1.5rem;
-  }
-
-  .logo-container {
-    position: absolute;
-    padding-left: 5rem;
-  }
-
-  .hero-section {
-    padding: 0 8rem;
-  }
-
-  .hero-text-container {
-    margin-top: 3rem;
-  }
-
-  .hero-text {
-    font-size: 6rem;
-    letter-spacing: 0.2rem;
-    margin: 0;
-  }
-
-  .hero-img {
-    margin: 2rem auto;
-  }
-
   #mobile-hero-img {
     display: none;
   }
 
-  @media screen and (width >= 768px) and (width <= 1140px) {
-    .hero-text {
-      font-size: 3rem;
-    }
+  .carousel-hidden-desktop {
+    display: none;
   }
 }
 
@@ -153,14 +234,14 @@ body {
     position: absolute;
     padding-left: 0;
   }
+}
 
-  @media screen and (width < 768px) {
-    #desktop-hero-img {
-      display: none;
-    }
+@media screen and (width < 768px) {
+  #desktop-hero-img {
+    display: none;
+  }
 
-    .carousel-hidden {
-      display: none;
-    }
+  .carousel-hidden {
+    display: none;
   }
 }
