@@ -1,13 +1,12 @@
+'use strict';
 const $navLinks = document.querySelector('.nav-links');
 const $navElement = document.querySelectorAll('.nav-element');
 const $heartIcon = document.querySelector('.heart-icon');
-
 if (!$navLinks) throw new Error('$navLinks query failed.');
 if (!$navElement) throw new Error('$navElement query failed.');
 if (!$heartIcon) throw new Error('$heartIcon query failed.');
-
 $navLinks.addEventListener('click', (event) => {
-  const $eventTarget = event.target as HTMLAnchorElement;
+  const $eventTarget = event.target;
   console.log($eventTarget);
   if ($eventTarget.matches('.nav-element.cursor')) {
     for (let i = 0; i < $navElement.length; i++) {

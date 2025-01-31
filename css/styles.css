@@ -1,0 +1,100 @@
+body {
+  font-family: Montserrat, sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.nav-container {
+  width: 100%;
+  position: relative;
+}
+
+.nav-bar {
+  background-color: #003b73;
+  justify-content: end;
+}
+
+.nav-links {
+  justify-content: end;
+  align-items: center;
+  gap: 1.3rem;
+}
+
+.nav-element {
+  padding: 2rem 0;
+  font-size: 1.2rem;
+  color: #f7f9fc;
+}
+
+.nav-element:hover {
+  color: #0999ed;
+  text-decoration: underline;
+}
+
+.active-nav-element {
+  color: #ffd166;
+}
+
+.icon {
+  font-size: 1.2rem;
+  color: #f7f9fc;
+  padding: 0.5rem;
+}
+
+.user-icon {
+  padding-right: 2rem;
+}
+
+.active-icon {
+  color: #ffd166;
+}
+
+.logo-container {
+  position: absolute;
+  top: 8px;
+}
+
+.header-logo {
+  height: 8rem;
+}
+
+@media only screen and (width >= 768px) {
+  .header-logo {
+    height: 18rem;
+  }
+
+  .nav-links {
+    margin-right: 5rem;
+    gap: 4vw;
+  }
+
+  .nav-element {
+    padding: 3rem 0;
+    font-size: 2.2rem;
+  }
+
+  .icon {
+    font-size: 2.2rem;
+    padding: 1.5rem;
+  }
+
+  .logo-container {
+    position: absolute;
+    padding-left: 5rem;
+  }
+}
