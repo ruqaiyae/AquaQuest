@@ -219,6 +219,58 @@ body {
   }
 }
 
+.subscribe-form-container {
+  padding: 1.5rem 0;
+
+  @media screen and (width >= 768px) {
+    padding: 5rem 0 0;
+  }
+}
+
+.form-title {
+  color: #ff6f61;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  @media screen and (width >= 768px) {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+}
+
+.email-input {
+  border: 0.1rem solid #ff6f61;
+  border-radius: 1rem;
+  width: 20rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.7rem;
+  color: #b6b6b6;
+
+  @media screen and (width >= 768px) {
+    border-radius: 2rem;
+    width: 70rem;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+  }
+}
+
+.submit-btn {
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.4rem 0.8rem;
+  margin: 1rem 0 1rem 1rem;
+  color: #f7f9fc;
+  font-size: 0.7rem;
+
+  @media screen and (width >= 768px) {
+    border-radius: 2rem;
+    padding: 1rem 2rem;
+    margin: 4rem 0 4rem 2rem;
+    font-size: 1.8rem;
+  }
+}
+
 @media only screen and (width >= 768px) {
   #mobile-hero-img {
     display: none;
