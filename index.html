@@ -22,6 +22,10 @@
       integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js"></script>
   </head>
   <body>
     <header class="nav-container">
@@ -44,7 +48,7 @@
 
     <!-- HomePage -->
     <div data-view="home-page">
-      <!-- Section hero-text & hero-img -->
+      <!-- Section: hero-text & hero-img -->
       <section class="hero-section">
         <div class="flex hero-text-container">
           <p class="hero-text">Explore. Dive. Log. Repeat.</p>
@@ -63,22 +67,21 @@
         </div>
       </section>
 
-      <!-- Section to create carousel for dive sites -->
+      <!-- Section: carousel for dive sites -->
       <section class="carousel-section">
         <div>
           <h2 class="carousel-title">Popular Dive Sites</h2>
         </div>
-        <div class="carousel-container">
+        <div>
           <div class="flex flex-center carousel-row">
-            <div class="">
-              <i class="fa-solid fa-angle-left angle"></i>
-            </div>
-            <div class="flex carousel-card-wrapper">
+            <div class="flex flex-center flex-wrap">
               <div class="carousel-card">
-                <img
-                  src="./images/dive-sites/Great-Blue-Hole-Belize.jpg"
-                  alt="Great Blue Hole, Belize"
-                  class="carousel-img" />
+                <div class="carousel-img-box">
+                  <img
+                    src="./images/dive-sites/Great-Blue-Hole-Belize.jpg"
+                    alt="Great Blue Hole, Belize"
+                    class="carousel-img" />
+                </div>
                 <p class="carousel-caption">Great Blue Hole, Belize</p>
               </div>
               <div class="carousel-card">
@@ -95,54 +98,49 @@
                   class="carousel-img" />
                 <p class="carousel-caption">Raja Ampat, Indonesia</p>
               </div>
-              <div class="carousel-card carousel-hidden">
+              <div class="carousel-card">
                 <img
                   src="./images/dive-sites/Anilao-Philippines.jpg"
                   alt="Anilao, Philippines"
                   class="carousel-img" />
                 <p class="carousel-caption">Anilao, Philippines</p>
               </div>
-              <div class="carousel-card carousel-hidden">
+              <div class="carousel-card">
                 <img
                   src="./images/dive-sites/Baa-Atoll-Maldives.jpg"
                   alt="Baa Atoll, Maldives"
                   class="carousel-img" />
                 <p class="carousel-caption">Baa Atoll, Maldives</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card">
                 <img
                   src="./images/dive-sites/Socorro-Islands-Mexico.jpg"
                   alt="Socorro Islands, Mexico"
                   class="carousel-img" />
                 <p class="carousel-caption">Socorro Islands, Mexico</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-sites/The-Red-Sea-Egypt.jpg"
                   alt="The Red Sea, Egypt"
                   class="carousel-img" />
                 <p class="carousel-caption">The Red Sea, Egypt</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-sites/Bligh-Water-Fiji.jpg"
                   alt="Bligh Water, Fiji"
                   class="carousel-img" />
                 <p class="carousel-caption">Bligh Water, Fiji</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-sites/Tulagi-Island-Solomon-Islands.jpg"
                   alt="Tulagi Island, Solomon Islands"
                   class="carousel-img" />
                 <p class="carousel-caption">Tulagi Island, Solomon Islands</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-sites/Tahiti-Moorea-French-Polynesia.jpg"
                   alt="Mo'orea, French Polynesia"
@@ -150,24 +148,18 @@
                 <p class="carousel-caption">Mo'orea, French Polynesia</p>
               </div>
             </div>
-            <div>
-              <i class="fa-solid fa-angle-right angle"></i>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- Section to create carousel for dive centers -->
+      <!-- Section: carousel for dive centers -->
       <section class="carousel-section">
         <div>
           <h2 class="carousel-title">Popular Dive Centers</h2>
         </div>
         <div class="carousel-card-wrapper">
           <div class="flex flex-center carousel-row">
-            <div class="">
-              <i class="fa-solid fa-angle-left angle"></i>
-            </div>
-            <div class="flex">
+            <div class="flex flex-center flex-wrap">
               <div class="carousel-card">
                 <img
                   src="./images/dive-centers/Elite-Diving-Sharm-El-Sheikh-Egypt.jpg"
@@ -193,7 +185,7 @@
                   class="carousel-img" />
                 <p class="carousel-caption">Scuba Junkie Sipadan, Malaysia</p>
               </div>
-              <div class="carousel-card carousel-hidden">
+              <div class="carousel-card">
                 <img
                   src="./images/dive-centers/ninja-boat.jpg"
                   alt="Dive Ninjas Expeditions Cabo San Lucas, Mexico"
@@ -202,7 +194,7 @@
                   Dive Ninjas Expeditions Cabo San Lucas, Mexico
                 </p>
               </div>
-              <div class="carousel-card carousel-hidden">
+              <div class="carousel-card">
                 <img
                   src="./images/dive-centers/Great-Barrier-Reef-Dive-Center-Cairns-Australia.jpg"
                   alt="Great Barrier Reef Dive Center Cairns, Australia"
@@ -211,16 +203,14 @@
                   Great Barrier Reef Dive Center Cairns, Australia
                 </p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card">
                 <img
                   src="./images/dive-centers/welcome-to-scuba-seekers.jpg"
                   alt="Scuba Seekers, Dahab, Egypt"
                   class="carousel-img" />
                 <p class="carousel-caption">Scuba Seekers, Dahab, Egypt</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-centers/Solomon-Islands-Uepi-Uepi-Island-Resort-BeachfrontAccommodation.jpg"
                   alt="Uepi Island Resort, Solomon Islands"
@@ -229,24 +219,21 @@
                   Uepi Island Resort, Solomon Islands
                 </p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-centers/Divemaster-Scuba-Nottingham-UK.jpg"
                   alt="Divemaster Scuba, Nottingham, UK"
                   class="carousel-img" />
                 <p class="carousel-caption">Divemaster Scuba, Nottingham, UK</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-centers/Aquamarine-Diving-Bali.webp"
                   alt="Aquamarine Diving, Bali"
                   class="carousel-img" />
                 <p class="carousel-caption">Aquamarine Diving, Bali</p>
               </div>
-              <div
-                class="carousel-card carousel-hidden carousel-hidden-desktop">
+              <div class="carousel-card carousel-hidden">
                 <img
                   src="./images/dive-centers/Deep-Blue.jpg"
                   alt="Deep Blue Diving Costa Rica"
@@ -254,14 +241,11 @@
                 <p class="carousel-caption">Deep Blue Diving Costa Rica</p>
               </div>
             </div>
-            <div>
-              <i class="fa-solid fa-angle-right angle"></i>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- Section to create form input for subscribe -->
+      <!-- Section: form input for subscribe -->
       <section class="subscribe-form-container">
         <form>
           <div class="flex flex-center">
@@ -281,6 +265,48 @@
         </form>
       </section>
     </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="flex flex-wrap foot-container">
+        <div class="foot-col flex flex-center">
+          <div>
+            <h5 class="flex flex-center foot-title">Quick Links</h5>
+            <div class="block">
+              <p class="flex flex-center foot-links">Home</p>
+              <p class="flex flex-center foot-links">Dive Sites</p>
+              <p class="flex flex-center foot-links">Dive Centers</p>
+              <p class="flex flex-center foot-links">Weather</p>
+            </div>
+          </div>
+        </div>
+        <div class="foot-col flex flex-center">
+          <div>
+            <h5 class="flex flex-center foot-title">About AquaQuest</h5>
+            <div class="block">
+              <p class="flex flex-center foot-links">Our Story</p>
+              <p class="flex flex-center foot-links">Contact Us</p>
+              <p class="flex flex-center foot-links">FAQs</p>
+            </div>
+          </div>
+        </div>
+        <div class="foot-col flex flex-center">
+          <div>
+            <h5 class="flex flex-center foot-title">Your Journey</h5>
+            <p class="flex flex-center foot-links">Certifications</p>
+            <p class="flex flex-center foot-links">Logbook</p>
+            <p class="flex flex-center foot-links">Favorites</p>
+          </div>
+        </div>
+        <div class="foot-logo-container flex flex-center">
+          <img src="./images/Logo.png" alt="Logo" class="foot-logo" />
+        </div>
+      </div>
+      <div class="flex footer-bottom">
+        <p class="footer-bottom-link">Privacy Policy</p>
+        <p class="footer-bottom-link">Terms &amp; Conditions</p>
+      </div>
+    </footer>
     <main class="main-container"></main>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>

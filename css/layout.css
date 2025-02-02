@@ -25,3 +25,11 @@
 .col-nav {
   width: 60%;
 }
+
+.foot-col {
+  width: calc(100% / 3);
+
+  @media screen and (width > 768px) {
+    width: 25%;
+  }
+}

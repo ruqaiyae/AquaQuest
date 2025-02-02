@@ -8,7 +8,14 @@ body {
 
 .flex-center {
   justify-content: center;
-  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.block {
+  display: block;
 }
 
 .hidden {
@@ -52,9 +59,9 @@ body {
   }
 }
 
-.nav-element:hover {
+/* .nav-element:hover {
   color: #0999ed;
-}
+} */
 
 .nav-element:active {
   color: #ffd166;
@@ -62,7 +69,8 @@ body {
 
 .active-nav-element {
   color: #ffd166;
-  transform: scale(1.2);
+
+  /* transform: scale(1.2); */
 }
 
 .nav-icon-wrapper {
@@ -161,8 +169,7 @@ body {
   font-size: 1rem;
   font-weight: 600;
   color: #ff6f61;
-  padding-left: 1rem;
-  margin: 1.2rem 0 0;
+  margin: 1.7rem 1rem 0;
 
   @media screen and (width >= 768px) {
     font-size: 2.8rem;
@@ -170,27 +177,18 @@ body {
   }
 }
 
-.carousel-container {
-  display: flex;
-}
-
 .carousel-row {
   flex-basis: 100%;
 }
 
-.angle {
-  cursor: pointer;
-  margin-bottom: 1.2rem;
-
-  @media screen and (width >= 768px) {
-    margin-bottom: 6rem;
-    font-size: 3rem;
-    color: #003b73;
+@media screen and (width <= 768px) {
+  .card-wrap {
+    flex-wrap: wrap;
   }
 }
 
 .carousel-card {
-  padding: 1.1rem 1.1rem 0;
+  padding: 1.1rem 0.8rem 0;
 
   @media screen and (width >= 768px) {
     padding: 2.1rem;
@@ -198,24 +196,31 @@ body {
 }
 
 .carousel-img {
-  width: 23vw;
-  height: 23vw;
-  border-radius: 0.3rem;
+  width: 90px;
+  height: 90px;
+  border: 0.3rem solid #003b73;
+  border-radius: 0.5rem;
+  transition: 0.5s;
 
   @media screen and (width >= 768px) {
-    width: 15vw;
-    height: 15vw;
+    width: 240px;
+    height: 240px;
   }
 }
 
+.carousel-img:hover {
+  transform: scale(1.1);
+}
+
 .carousel-caption {
-  color: #0999ed;
+  color: #003b73;
   font-size: 0.6rem;
+  width: 90px;
 
   @media screen and (width >= 768px) {
     font-size: 1.5rem;
     font-weight: 600;
-    width: 15vw;
+    width: 240px;
   }
 }
 
@@ -223,7 +228,7 @@ body {
   padding: 1.5rem 0;
 
   @media screen and (width >= 768px) {
-    padding: 5rem 0 0;
+    padding: 5rem 0;
   }
 }
 
@@ -245,6 +250,7 @@ body {
   padding: 0.4rem 1rem;
   font-size: 0.7rem;
   color: #b6b6b6;
+  margin: 1rem;
 
   @media screen and (width >= 768px) {
     border-radius: 2rem;
@@ -259,15 +265,81 @@ body {
   border: none;
   border-radius: 1rem;
   padding: 0.4rem 0.8rem;
-  margin: 1rem 0 1rem 1rem;
+  margin: 1rem;
   color: #f7f9fc;
   font-size: 0.7rem;
 
   @media screen and (width >= 768px) {
     border-radius: 2rem;
     padding: 1rem 2rem;
-    margin: 4rem 0 4rem 2rem;
     font-size: 1.8rem;
+  }
+}
+
+.foot-container {
+  color: #f7f9fc;
+  background-color: #003b73;
+
+  @media screen and (width >= 768px) {
+    padding-bottom: 3rem;
+  }
+}
+
+.foot-title {
+  margin: 2rem 0 0.7rem;
+
+  @media screen and (width >= 768px) {
+    margin: 5rem 0 1.5rem;
+    font-size: 2rem;
+    font-weight: 500;
+  }
+}
+
+.foot-links {
+  margin: 0.2rem;
+  font-size: 0.7rem;
+
+  @media screen and (width >= 768px) {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+  }
+}
+
+.foot-logo-container {
+  width: 100%;
+  margin: 1rem;
+
+  @media screen and (width >= 768px) {
+    width: 25%;
+    margin: 0;
+  }
+}
+
+.foot-logo {
+  height: 8rem;
+
+  @media screen and (width >= 768px) {
+    height: 18rem;
+    margin-top: 3rem;
+  }
+}
+
+.footer-bottom {
+  padding-left: 3rem;
+  color: #b6b6b6;
+  font-size: 0.5rem;
+
+  @media screen and (width >=768px) {
+    padding-left: 8rem;
+    font-size: 1.3rem;
+  }
+}
+
+.footer-bottom-link {
+  padding: 0.2rem 0.4rem;
+
+  @media screen and (width >= 768px) {
+    padding: 1rem 1.5rem;
   }
 }
 
