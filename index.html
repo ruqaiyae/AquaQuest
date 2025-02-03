@@ -29,7 +29,9 @@
     <header>
       <div class="nav-bar flex">
         <div class="col-nav flex nav-links">
-          <a class="nav-element cursor" data-view="home-page">Home</a>
+          <a class="nav-element cursor active-nav-element" data-view="home-page"
+            >Home</a
+          >
           <a class="nav-element cursor" data-view="explore-page">Explore</a>
           <a class="nav-element cursor" data-view="learn-page">Learn</a>
           <a class="nav-element cursor" data-view="log-page">Log</a>
@@ -45,7 +47,7 @@
     </header>
 
     <!-- HomePage -->
-    <main data-view="home-page" class="main-container">
+    <main data-view="home-page" class="main-container view">
       <!-- Section: hero-text & hero-img -->
       <section class="hero-section">
         <div class="flex hero-text-container">
@@ -297,7 +299,7 @@
       </section>
     </main>
 
-    <div data-view="explore-page" class="hidden">
+    <div data-view="explore-page" class="view hidden">
       <form class="flex flex-center country-form">
         <div>
           <select name="country" id="country" class="country-select">

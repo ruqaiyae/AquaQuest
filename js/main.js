@@ -4,13 +4,16 @@ const $navLinks = document.querySelector('.nav-links');
 const $navElement = document.querySelectorAll('.nav-element');
 const $heartIcon = document.querySelector('.heart-icon');
 const $userIcon = document.querySelector('.user-icon');
+const $view = document.querySelectorAll('.view');
 if (!$navLinks) throw new Error('$navLinks query failed.');
 if (!$navElement) throw new Error('$navElement query failed.');
 if (!$heartIcon) throw new Error('$heartIcon query failed.');
 if (!$userIcon) throw new Error('$userIcon query failed.');
-// adding an eventListener to the nav-bar to update color of nav-elements
+if (!$view) throw new Error('$view query failed.');
+// adding an eventListener to the nav-bar
 $navLinks.addEventListener('click', (event) => {
   const $eventTarget = event.target;
+  // to update color of nav-elements
   if ($eventTarget.matches('.nav-element.cursor')) {
     for (let i = 0; i < $navElement.length; i++) {
       if ($eventTarget === $navElement[i]) {
@@ -29,6 +32,27 @@ $navLinks.addEventListener('click', (event) => {
     $heartIcon.classList.remove('active-icon');
     for (let i = 0; i < $navElement.length; i++) {
       $navElement[i].classList.remove('active-nav-element');
+    }
+  }
+  // to swap views
+  if ($eventTarget.matches('.nav-element.cursor')) {
+    const $dataView = $eventTarget.dataset.view;
+    for (let i = 0; i < $view.length; i++) {
+      if ($view[i].getAttribute('data-view') !== $dataView) {
+        $view[i].classList.add('hidden');
+      } else {
+        $view[i].classList.remove('hidden');
+      }
+    }
+  } else if ($eventTarget === $heartIcon) {
+    $heartIcon.classList.remove('hidden');
+    for (let i = 0; i < $view.length; i++) {
+      $view[i].classList.add('hidden');
+    }
+  } else if ($eventTarget === $userIcon) {
+    $heartIcon.classList.remove('hidden');
+    for (let i = 0; i < $view.length; i++) {
+      $view[i].classList.add('hidden');
     }
   }
 });
