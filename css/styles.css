@@ -179,6 +179,19 @@ body {
 
 .carousel-row {
   flex-basis: 100%;
+  align-items: center;
+}
+
+.angle {
+  font-size: 1rem;
+  color: #003b73;
+  margin-bottom: 2rem;
+
+  @media screen and (width >= 768px) {
+    font-size: 3rem;
+    margin-bottom: 5rem;
+    padding: 0 1rem;
+  }
 }
 
 @media screen and (width <= 768px) {
@@ -191,7 +204,15 @@ body {
   padding: 1.1rem 0.8rem 0;
 
   @media screen and (width >= 768px) {
-    padding: 2.1rem;
+    padding: 1.1rem 1.5rem 0;
+  }
+}
+
+.carousel-center-card {
+  padding: 1.1rem 0.8rem 0;
+
+  @media screen and (width >= 768px) {
+    padding: 1.1rem 1.5rem 0;
   }
 }
 
@@ -260,7 +281,7 @@ body {
   }
 }
 
-.submit-btn {
+.subscribe-btn {
   background-color: #ff6f61;
   border: none;
   border-radius: 1rem;
@@ -340,6 +361,117 @@ body {
 
   @media screen and (width >= 768px) {
     padding: 1rem 1.5rem;
+  }
+}
+
+.country-form {
+  margin: 5rem 0 3rem;
+
+  @media screen and (width >= 768px) {
+    margin: 7rem 0 3rem;
+  }
+}
+
+.country-select {
+  border: 1px solid #ff6f61;
+  border-radius: 2rem;
+  width: 25rem;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: #b6b6b6;
+
+  @media screen and (width >=768px) {
+    width: 45rem;
+    font-size: 1.6rem;
+    padding: 1rem;
+  }
+}
+
+.submit-btn {
+  margin: 1.5rem;
+  padding: 0.7rem 2.5rem;
+  border: none;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+  background-color: #ff6f61;
+  color: #f7f9fc;
+
+  @media screen and (width >= 768px) {
+    margin: 1.8rem;
+    font-size: 1.6rem;
+    padding: 0.9rem 3.5rem;
+    border-radius: 3rem;
+  }
+}
+
+.cards-container {
+  margin: 3rem;
+
+  @media screen and (width >=768px) {
+    margin: 5rem 10rem;
+  }
+}
+
+.explore-dive-sites {
+  color: #0999ed;
+  font-weight: 500;
+
+  @media screen and (width >= 768px) {
+    font-size: 3rem;
+  }
+}
+
+.explore-dive-centers {
+  color: #ffd166;
+  font-weight: 500;
+
+  @media screen and (width >= 768px) {
+    font-size: 3rem;
+  }
+}
+
+.explore-weather {
+  color: #6c757d;
+  font-weight: 500;
+
+  @media screen and (width >= 768px) {
+    font-size: 3rem;
+  }
+}
+
+.cards {
+  border-radius: 1rem;
+  height: 18rem;
+  box-shadow: 2px 2px 3px #b6b6b6;
+
+  @media screen and (width >= 768px) {
+    border-radius: 2.5rem;
+    height: 50rem;
+    box-shadow: 3px 3px 4px #b6b6b6;
+  }
+}
+
+.explore-dive-sites-card {
+  border: 2px solid #0999ed;
+
+  @media screen and (width >= 768px) {
+    border: 3px solid #0999ed;
+  }
+}
+
+.explore-dive-centers-card {
+  border: 2px solid #ffd166;
+
+  @media screen and (width >= 768px) {
+    border: 3px solid #ffd166;
+  }
+}
+
+.explore-weather-card {
+  border: 2px solid #6c757d;
+
+  @media screen and (width >= 768px) {
+    border: 3px solid #6c757d;
   }
 }
 
