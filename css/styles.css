@@ -14,21 +14,12 @@ body {
   flex-wrap: wrap;
 }
 
-.block {
-  display: block;
-}
-
 .hidden {
   display: none;
 }
 
 .cursor {
   cursor: pointer;
-}
-
-.nav-container {
-  width: 100%;
-  position: relative;
 }
 
 .nav-bar {
@@ -43,7 +34,7 @@ body {
 
   @media screen and (width >= 768px) {
     margin-right: 5rem;
-    gap: 4vw;
+    gap: 7rem;
   }
 }
 
@@ -59,18 +50,8 @@ body {
   }
 }
 
-/* .nav-element:hover {
-  color: #0999ed;
-} */
-
-.nav-element:active {
-  color: #ffd166;
-}
-
 .active-nav-element {
   color: #ffd166;
-
-  /* transform: scale(1.2); */
 }
 
 .nav-icon-wrapper {
