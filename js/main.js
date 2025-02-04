@@ -188,6 +188,10 @@ async function fetchData(country) {
     const result = await sitesFetch.json();
     // Access Dive Site data
     const diveSitesData = result.data;
+    // Query the site-table-body to append DOM tree
+    const $siteTbody = document.querySelector('.site-tbody');
+    if (!$siteTbody) throw new Error('$siteTbody query failed');
+    $siteTbody.textContent = '';
     // Access the first 10 or the total dive sites (whichever is lower)
     const lastIndex = diveSitesData.length > 10 ? 10 : diveSitesData.length;
     for (let i = 0; i < lastIndex; i++) {
@@ -197,8 +201,22 @@ async function fetchData(country) {
         location: diveSitesData[i].location,
         region: diveSitesData[i].region,
       };
-      // Successfully handle and output the object
-      console.log('diveSites: ', diveSites);
+      // Create the DOM tree to successfully handle and output the object
+      const $tr = document.createElement('tr');
+      const $tdSiteName = document.createElement('td');
+      $tdSiteName.textContent = diveSites.name;
+      $tdSiteName.className = 'site-tbody-data';
+      const $tdOcean = document.createElement('td');
+      $tdOcean.textContent = diveSites.ocean;
+      $tdOcean.className = 'site-tbody-data';
+      const $tdLocation = document.createElement('td');
+      $tdLocation.textContent = diveSites.location;
+      $tdLocation.className = 'site-tbody-data';
+      const $tdRegion = document.createElement('td');
+      $tdRegion.textContent = diveSites.region;
+      $tdRegion.className = 'site-tbody-data';
+      $tr.append($tdSiteName, $tdOcean, $tdLocation, $tdRegion);
+      $siteTbody.appendChild($tr);
     }
   } catch (error) {
     // Log any errors that arise during the fetch operation
