@@ -197,3 +197,18 @@ function initializeCarousel(
 }
 
 initializeCarousel('#dive-sites-carousel', '#dive-centers-carousel'); // calling the carousel function
+
+// query the form element and the select element to access user select
+const $form = document.querySelector('.country-form');
+const $select = document.querySelector('#country') as HTMLSelectElement;
+
+if (!$form) throw new Error('$form query failed');
+if (!$select) throw new Error('$select query failed');
+
+// add an event listener to form to handle submit
+$form.addEventListener('submit', (event: Event) => {
+  event.preventDefault();
+
+  const selectedCountry: string = $select.value;
+  console.log('selectedCountry: ', selectedCountry);
+});

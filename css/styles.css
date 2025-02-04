@@ -6,7 +6,7 @@ body {
   display: flex;
 }
 
-.flex-center {
+.justify {
   justify-content: center;
 }
 
@@ -42,7 +42,7 @@ body {
   padding: 2rem 0;
   font-size: 1.2rem;
   color: #f7f9fc;
-  transform: scale(1);
+  text-decoration: none;
 
   @media screen and (width >= 768px) {
     padding: 3rem 0;
