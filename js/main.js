@@ -162,5 +162,46 @@ if (!$select) throw new Error('$select query failed');
 $form.addEventListener('submit', (event) => {
   event.preventDefault();
   const selectedCountry = $select.value;
-  console.log('selectedCountry: ', selectedCountry);
+  // Execute the async function to perform the fetch operation
+  fetchData(selectedCountry);
 });
+// Define an asynchronous function to fetch data
+async function fetchData(country) {
+  // Define parameters for Dive Sites Fetch request
+  const urlDiveSites = `https://world-scuba-diving-sites-api.p.rapidapi.com/divesites?query=${country}`;
+  const optionsDiveSites = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': '19049dc8b8mshabc64b184d913e7p119f99jsnc1edc9cdf914',
+      'x-rapidapi-host': 'world-scuba-diving-sites-api.p.rapidapi.com',
+    },
+  };
+  try {
+    // Initiate a fetch request and await its response
+    const sitesFetch = await fetch(urlDiveSites, optionsDiveSites);
+    // Ensure the response status indicates success
+    if (!sitesFetch.ok) {
+      // If the status code is not in the successful range, throw an error
+      throw new Error(`HTTP error! Status: ${sitesFetch.status}`);
+    }
+    // Await the parsing of the response body as JSON
+    const result = await sitesFetch.json();
+    // Access Dive Site data
+    const diveSitesData = result.data;
+    // Access the first 10 or the total dive sites (whichever is lower)
+    const lastIndex = diveSitesData.length > 10 ? 10 : diveSitesData.length;
+    for (let i = 0; i < lastIndex; i++) {
+      const diveSites = {
+        name: diveSitesData[i].name,
+        ocean: diveSitesData[i].ocean,
+        location: diveSitesData[i].location,
+        region: diveSitesData[i].region,
+      };
+      // Successfully handle and output the object
+      console.log('diveSites: ', diveSites);
+    }
+  } catch (error) {
+    // Log any errors that arise during the fetch operation
+    console.error(error);
+  }
+}
