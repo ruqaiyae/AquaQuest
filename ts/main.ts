@@ -1,4 +1,4 @@
-// querying the DOM elements to add an event listener
+// query the DOM elements to add an event listener
 const $navLinks = document.querySelector('.nav-links');
 const $navElement = document.querySelectorAll('.nav-element');
 const $heartIcon = document.querySelector('.heart-icon');
@@ -11,7 +11,7 @@ if (!$heartIcon) throw new Error('$heartIcon query failed.');
 if (!$userIcon) throw new Error('$userIcon query failed.');
 if (!$view) throw new Error('$view query failed.');
 
-// adding an eventListener to the nav-bar
+// add an eventListener to the nav-bar
 $navLinks.addEventListener('click', (event) => {
   const $eventTarget = event.target as HTMLAnchorElement;
 
@@ -60,7 +60,7 @@ $navLinks.addEventListener('click', (event) => {
   }
 });
 
-// defining a function for the carousel
+// define a function for the carousel
 function initializeCarousel(
   siteContainerSelector: string,
   centerContainerSelector: string,
