@@ -256,6 +256,16 @@ async function fetchData(country: string): Promise<void> {
     if (!$siteTbody) throw new Error('$siteTbody query failed');
 
     $siteTbody.textContent = '';
+    if (country === 'default') {
+      const $placeholderRow = document.createElement('tr');
+      const $placeholderText = document.createElement('td');
+      $placeholderText.setAttribute('colspan', '4');
+      $placeholderText.className = 'table-placeholder';
+      $placeholderText.textContent =
+        'Select a country to view Dive Sites Information';
+      $placeholderRow.appendChild($placeholderText);
+      $siteTbody.appendChild($placeholderRow);
+    }
 
     // Access the first 10 or the total dive sites (whichever is lower)
     const lastIndex = diveSitesData.length > 10 ? 10 : diveSitesData.length;
@@ -271,7 +281,7 @@ async function fetchData(country: string): Promise<void> {
       const $tr = document.createElement('tr');
       const $tdSiteName = document.createElement('td');
       $tdSiteName.textContent = diveSites.name;
-      $tdSiteName.className = 'site-tbody-data';
+      $tdSiteName.className = 'site-tbody-data border-left';
 
       const $tdOcean = document.createElement('td');
       $tdOcean.textContent = diveSites.ocean;
@@ -283,7 +293,14 @@ async function fetchData(country: string): Promise<void> {
 
       const $tdRegion = document.createElement('td');
       $tdRegion.textContent = diveSites.region;
-      $tdRegion.className = 'site-tbody-data';
+      $tdRegion.className = 'site-tbody-data border-right';
+
+      if (i === lastIndex - 1) {
+        $tdSiteName.classList.add('border-bottom');
+        $tdOcean.classList.add('border-bottom');
+        $tdLocation.classList.add('border-bottom');
+        $tdRegion.classList.add('border-bottom');
+      }
 
       $tr.append($tdSiteName, $tdOcean, $tdLocation, $tdRegion);
       $siteTbody.appendChild($tr);
