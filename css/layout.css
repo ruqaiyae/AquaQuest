@@ -1,0 +1,31 @@
+.col-full {
+  width: 100%;
+}
+
+.col-half {
+  width: 50%;
+}
+
+.col-one-fourth {
+  width: 25%;
+}
+
+.col-third {
+  width: 33%;
+}
+
+.col-two-thirds {
+  width: 66%;
+}
+
+.col-nav {
+  width: 60%;
+}
+
+.foot-col {
+  width: calc(100% / 3);
+
+  @media screen and (width > 768px) {
+    width: 25%;
+  }
+}
