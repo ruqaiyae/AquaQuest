@@ -230,6 +230,17 @@ interface CentersData {
   type: string;
 }
 
+// Declare the Weather response data type
+interface WeatherData {
+  date: string[];
+  minTemp: number[];
+  maxTemp: number[];
+  uvIndex: number[];
+  precipitation: number[];
+  windSpeed: number[];
+  windGusts: number[];
+}
+
 // Define an asynchronous function to fetch data
 async function fetchData(country: string): Promise<void> {
   // Define parameters for Dive Sites Fetch request
@@ -414,8 +425,44 @@ async function fetchData(country: string): Promise<void> {
     const lat = geoLocation.lat;
     const lng = geoLocation.lng;
 
-    console.log('lat: ', lat);
-    console.log('lng: ', lng);
+    // Define parameter for Weather fetch request
+    const urlWeather = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&daily=temperature_2m_max,temperature_2m_min,uv_index_max,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max&timezone=auto&forecast_days=16`;
+
+    // Initiate a fetch request and await its response
+    const weatherFetch = await fetch(urlWeather);
+
+    // Ensure the response status indicates success
+    if (!weatherFetch.ok) {
+      // If the status code is not in the successful range, throw an error
+      throw new Error(`HTTP error! Status: ${weatherFetch.status}`);
+    }
+
+    // Await the parsing of the response body as JSON
+    const result = await weatherFetch.json();
+
+    // Access Weather data
+    const weatherData = result.daily;
+    console.log('weatherData: ', weatherData);
+
+    const date = weatherData.time;
+    const minTemp = weatherData.temperature_2m_min;
+    const maxTemp = weatherData.temperature_2m_max;
+    const uvIndex = weatherData.uv_index_max;
+    const precipitation = weatherData.precipitation_sum;
+    const windSpeed = weatherData.wind_speed_10m_max;
+    const windGusts = weatherData.wind_gusts_10m_max;
+
+    const weather: WeatherData = {
+      date,
+      minTemp,
+      maxTemp,
+      uvIndex,
+      precipitation,
+      windSpeed,
+      windGusts,
+    };
+    // Successfully handle and output the object
+    console.log('weather: ', weather);
   } catch (error) {
     // Log any errors that arise during the fetch operation
     console.error(error);
