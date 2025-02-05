@@ -153,3 +153,89 @@ function initializeCarousel(siteContainerSelector, centerContainerSelector) {
   autoSlide();
 }
 initializeCarousel('#dive-sites-carousel', '#dive-centers-carousel'); // calling the carousel function
+// query the form element and the select element to access user select
+const $form = document.querySelector('.country-form');
+const $select = document.querySelector('#country');
+if (!$form) throw new Error('$form query failed');
+if (!$select) throw new Error('$select query failed');
+// add an event listener to form to handle submit
+$form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const selectedCountry = $select.value;
+  // Execute the async function to perform the fetch operation
+  fetchData(selectedCountry);
+});
+// Define an asynchronous function to fetch data
+async function fetchData(country) {
+  // Define parameters for Dive Sites Fetch request
+  const urlDiveSites = `https://world-scuba-diving-sites-api.p.rapidapi.com/divesites?query=${country}`;
+  const optionsDiveSites = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': '19049dc8b8mshabc64b184d913e7p119f99jsnc1edc9cdf914',
+      'x-rapidapi-host': 'world-scuba-diving-sites-api.p.rapidapi.com',
+    },
+  };
+  try {
+    // Initiate a fetch request and await its response
+    const sitesFetch = await fetch(urlDiveSites, optionsDiveSites);
+    // Ensure the response status indicates success
+    if (!sitesFetch.ok) {
+      // If the status code is not in the successful range, throw an error
+      throw new Error(`HTTP error! Status: ${sitesFetch.status}`);
+    }
+    // Await the parsing of the response body as JSON
+    const result = await sitesFetch.json();
+    // Access Dive Site data
+    const diveSitesData = result.data;
+    // Query the site-table-body to append DOM tree
+    const $siteTbody = document.querySelector('.site-tbody');
+    if (!$siteTbody) throw new Error('$siteTbody query failed');
+    $siteTbody.textContent = '';
+    if (country === 'default') {
+      const $placeholderRow = document.createElement('tr');
+      const $placeholderText = document.createElement('td');
+      $placeholderText.setAttribute('colspan', '4');
+      $placeholderText.className = 'table-placeholder';
+      $placeholderText.textContent =
+        'Select a country to view Dive Sites Information';
+      $placeholderRow.appendChild($placeholderText);
+      $siteTbody.appendChild($placeholderRow);
+    }
+    // Access the first 10 or the total dive sites (whichever is lower)
+    const lastIndex = diveSitesData.length > 10 ? 10 : diveSitesData.length;
+    for (let i = 0; i < lastIndex; i++) {
+      const diveSites = {
+        name: diveSitesData[i].name,
+        ocean: diveSitesData[i].ocean,
+        location: diveSitesData[i].location,
+        region: diveSitesData[i].region,
+      };
+      // Create the DOM tree to successfully handle and output the object
+      const $tr = document.createElement('tr');
+      const $tdSiteName = document.createElement('td');
+      $tdSiteName.textContent = diveSites.name;
+      $tdSiteName.className = 'site-tbody-data border-left';
+      const $tdOcean = document.createElement('td');
+      $tdOcean.textContent = diveSites.ocean;
+      $tdOcean.className = 'site-tbody-data';
+      const $tdLocation = document.createElement('td');
+      $tdLocation.textContent = diveSites.location;
+      $tdLocation.className = 'site-tbody-data';
+      const $tdRegion = document.createElement('td');
+      $tdRegion.textContent = diveSites.region;
+      $tdRegion.className = 'site-tbody-data border-right';
+      if (i === lastIndex - 1) {
+        $tdSiteName.classList.add('border-bottom');
+        $tdOcean.classList.add('border-bottom');
+        $tdLocation.classList.add('border-bottom');
+        $tdRegion.classList.add('border-bottom');
+      }
+      $tr.append($tdSiteName, $tdOcean, $tdLocation, $tdRegion);
+      $siteTbody.appendChild($tr);
+    }
+  } catch (error) {
+    // Log any errors that arise during the fetch operation
+    console.error(error);
+  }
+}
