@@ -266,7 +266,7 @@ async function fetchData(country) {
     if (country === 'default') {
       const $placeholderRow = document.createElement('tr');
       const $placeholderText = document.createElement('td');
-      $placeholderText.setAttribute('colspan', '4');
+      $placeholderText.setAttribute('colspan', '3');
       $placeholderText.className = 'table-placeholder';
       $placeholderText.textContent =
         'Select a country to view Dive Sites Information';
@@ -307,6 +307,20 @@ async function fetchData(country) {
   const apiKeyGeocode = 'AIzaSyB6fiptPxdTsjan6PcC1eWu2bWnHOjenKk';
   const urlGeocode = 'https://maps.googleapis.com/maps/api/geocode/json';
   try {
+    // Query the center-table-body to append DOM tree
+    const $weatherTbody = document.querySelector('.weather-tbody');
+    if (!$weatherTbody) throw new Error('$weatherTbody query failed');
+    $weatherTbody.textContent = '';
+    if (country === 'default') {
+      const $placeholderRow = document.createElement('tr');
+      const $placeholderText = document.createElement('td');
+      $placeholderText.setAttribute('colspan', '7');
+      $placeholderText.className = 'table-placeholder';
+      $placeholderText.textContent =
+        'Select a country to view Dive Sites Information';
+      $placeholderRow.appendChild($placeholderText);
+      $weatherTbody.appendChild($placeholderRow);
+    }
     // Initiate a fetch request and await its response
     const locationFetch = await fetch(
       `${urlGeocode}?address=${country}&key=${apiKeyGeocode}`,
@@ -334,7 +348,6 @@ async function fetchData(country) {
     const result = await weatherFetch.json();
     // Access Weather data
     const weatherData = result.daily;
-    console.log('weatherData: ', weatherData);
     const date = weatherData.time;
     const minTemp = weatherData.temperature_2m_min;
     const maxTemp = weatherData.temperature_2m_max;
@@ -352,7 +365,82 @@ async function fetchData(country) {
       windGusts,
     };
     // Successfully handle and output the object
-    console.log('weather: ', weather);
+    // Create the HTML for the weather.date
+    for (let i = 0; i < weather.date.length; i++) {
+      const $trWeather = document.createElement('tr');
+      $trWeather.className = 'tr-weather';
+      const $tdDate = document.createElement('td');
+      $tdDate.className = 'weather-tbody-data border-left';
+      $tdDate.textContent = weather.date[i];
+      if (i === weather.date.length - 1) {
+        $tdDate.classList.add('border-bottom');
+      }
+      $trWeather.appendChild($tdDate);
+      $weatherTbody.appendChild($trWeather);
+    }
+    // Query the rows to append data
+    const $trWeatherRow = document.querySelectorAll('.tr-weather');
+    if (!$trWeatherRow) throw new Error('$trWeatherRow query failed');
+    // Create the HTML for the weather.minTemp
+    for (let i = 0; i < weather.minTemp.length; i++) {
+      const $tdMinTemp = document.createElement('td');
+      $tdMinTemp.className = 'weather-tbody-data';
+      $tdMinTemp.textContent = String(weather.minTemp[i]);
+      if (i === weather.minTemp.length - 1) {
+        $tdMinTemp.classList.add('border-bottom');
+      }
+      $trWeatherRow[i].appendChild($tdMinTemp);
+    }
+    // Create the HTML for the weather.maxTemp
+    for (let i = 0; i < weather.maxTemp.length; i++) {
+      const $tdMaxTemp = document.createElement('td');
+      $tdMaxTemp.className = 'weather-tbody-data';
+      $tdMaxTemp.textContent = String(weather.maxTemp[i]);
+      if (i === weather.maxTemp.length - 1) {
+        $tdMaxTemp.classList.add('border-bottom');
+      }
+      $trWeatherRow[i].appendChild($tdMaxTemp);
+    }
+    // Create the HTML for the weather.uvIndex
+    for (let i = 0; i < weather.uvIndex.length; i++) {
+      const $tdUVindex = document.createElement('td');
+      $tdUVindex.className = 'weather-tbody-data';
+      $tdUVindex.textContent = String(weather.uvIndex[i]);
+      if (i === weather.uvIndex.length - 1) {
+        $tdUVindex.classList.add('border-bottom');
+      }
+      $trWeatherRow[i].appendChild($tdUVindex);
+    }
+    // Create the HTML for the weather.precipitation
+    for (let i = 0; i < weather.precipitation.length; i++) {
+      const $tdPrecipitation = document.createElement('td');
+      $tdPrecipitation.className = 'weather-tbody-data';
+      $tdPrecipitation.textContent = String(weather.precipitation[i]);
+      if (i === weather.uvIndex.length - 1) {
+        $tdPrecipitation.classList.add('border-bottom');
+      }
+      $trWeatherRow[i].appendChild($tdPrecipitation);
+    }
+    // Create the HTML for the weather.windSpeed
+    for (let i = 0; i < weather.windSpeed.length; i++) {
+      const $tdWindSpeed = document.createElement('td');
+      $tdWindSpeed.className = 'weather-tbody-data';
+      $tdWindSpeed.textContent = String(weather.windSpeed[i]);
+      if (i === weather.uvIndex.length - 1) {
+        $tdWindSpeed.classList.add('border-bottom');
+      }
+      $trWeatherRow[i].appendChild($tdWindSpeed);
+    }
+    // Create the HTML for the weather.windGusts
+    for (let i = 0; i < weather.windGusts.length; i++) {
+      const $tdWindGusts = document.createElement('td');
+      $tdWindGusts.className = 'weather-tbody-data border-right';
+      $tdWindGusts.textContent = String(weather.windGusts[i]);
+      if (i === weather.uvIndex.length - 1) {
+        $tdWindGusts.classList.add('border-bottom');
+      }
+      $trWeatherRow[i].appendChild($tdWindGusts);
+    }
   } catch (error) {
     // Log any errors that arise during the fetch operation
     console.error(error);
