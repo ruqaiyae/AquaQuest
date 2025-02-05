@@ -446,3 +446,16 @@ async function fetchData(country) {
     console.error(error);
   }
 }
+// Query img and placeholder img to update src
+const $imgFile = document.querySelector('#img-file');
+const $placeholderImg = document.querySelector('.placeholder-image');
+if (!$imgFile) throw new Error('$imgFile query failed.');
+if (!$placeholderImg) throw new Error('$placeholderImg query failed.');
+// Add an event listener to update Photo URL
+$imgFile.addEventListener('input', (event) => {
+  const $eventTarget = event.target;
+  const $file = $eventTarget.files?.[0];
+  if (!$file) return;
+  const $imgSrc = URL.createObjectURL($file);
+  $placeholderImg.setAttribute('src', $imgSrc);
+});

@@ -590,108 +590,108 @@ body {
   @media screen and (width >= 1200px) {
     margin: 8rem auto 2rem;
   }
+}
 
-  .log-title {
-    color: #ff6f61;
-    font-weight: 400;
-    font-size: 2rem;
-    text-align: center;
+.log-title {
+  color: #ff6f61;
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
 
-    @media screen and (width >= 768px) {
-      font-size: 3rem;
-      text-align: left;
-    }
+  @media screen and (width >= 768px) {
+    font-size: 3rem;
+    text-align: left;
   }
+}
 
-  .placeholder-image {
-    width: 100%;
-    margin-bottom: 1rem;
+.placeholder-image {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form-labels {
+  display: block;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+
+  @media screen and (width >=768px) {
+    font-size: 1.5rem;
   }
+}
 
-  .form-labels {
-    display: block;
-    text-transform: uppercase;
-    font-size: 1.1rem;
+.input-elements {
+  display: block;
+  margin-top: 0.7rem;
+  margin-bottom: 2rem;
+  padding: 0.3rem;
+  width: 100%;
+  border: 0.1rem solid #6c757d;
+  border-radius: 0.5rem;
+  height: 30px;
+}
 
-    @media screen and (width >=768px) {
-      font-size: 1.5rem;
-    }
+.textarea {
+  height: auto;
+}
+
+.input-elements:focus {
+  outline-color: #003b73;
+}
+
+.img-input {
+  display: flex;
+  align-items: flex-end;
+}
+
+.img-input-container {
+  width: 100%;
+}
+
+@media screen and (width>=768px) {
+  .log-btn-container {
+    justify-content: flex-end;
   }
+}
 
-  .input-elements {
-    display: block;
-    margin-top: 0.7rem;
-    margin-bottom: 2rem;
-    padding: 0.3rem;
-    width: 100%;
-    border: 0.1rem solid #6c757d;
-    border-radius: 0.5rem;
-    height: 30px;
-  }
+.add-log-btn {
+  background-color: #ff6f61;
+  color: #f7f9fc;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 2rem;
 
-  .textarea {
-    height: auto;
-  }
-
-  .input-elements:focus {
-    outline-color: #003b73;
-  }
-
-  .img-input {
-    display: flex;
-    align-items: flex-end;
-  }
-
-  .img-input-container {
-    width: 100%;
-  }
-
-  @media screen and (width>=768px) {
-    .log-btn-container {
-      justify-content: flex-end;
-    }
-  }
-
-  .add-log-btn {
-    background-color: #ff6f61;
-    color: #f7f9fc;
-    border: none;
-    text-transform: uppercase;
-    font-size: 1.1rem;
+  @media screen and (width >= 768px) {
+    font-size: 1.5rem;
+    margin: 1rem;
     padding: 1rem 2.5rem;
-    border-radius: 2rem;
+  }
+}
 
-    @media screen and (width >= 768px) {
-      font-size: 1.5rem;
-      margin: 1rem;
-      padding: 1rem 2.5rem;
-    }
+@media only screen and (width >= 768px) {
+  #mobile-hero-img {
+    display: none;
   }
 
-  @media only screen and (width >= 768px) {
-    #mobile-hero-img {
-      display: none;
-    }
+  .carousel-hidden-desktop {
+    display: none;
+  }
+}
 
-    .carousel-hidden-desktop {
-      display: none;
-    }
+@media screen and (width < 992px) {
+  .logo-container {
+    position: absolute;
+    padding-left: 0;
+  }
+}
+
+@media screen and (width < 768px) {
+  #desktop-hero-img {
+    display: none;
   }
 
-  @media screen and (width < 992px) {
-    .logo-container {
-      position: absolute;
-      padding-left: 0;
-    }
-  }
-
-  @media screen and (width < 768px) {
-    #desktop-hero-img {
-      display: none;
-    }
-
-    .carousel-hidden {
-      display: none;
-    }
+  .carousel-hidden {
+    display: none;
   }
 }
