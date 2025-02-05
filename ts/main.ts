@@ -223,6 +223,13 @@ interface SiteData {
   region: string;
 }
 
+// Declare the Dive Center response data type
+interface CentersData {
+  name: string;
+  location: string;
+  type: string;
+}
+
 // Define an asynchronous function to fetch data
 async function fetchData(country: string): Promise<void> {
   // Define parameters for Dive Sites Fetch request
@@ -307,6 +314,46 @@ async function fetchData(country: string): Promise<void> {
     }
   } catch (error) {
     // Log any errors that arise during the fetch operation
+    console.error(error);
+  }
+
+  // Define parameters for Dive Centers fetch request
+  const urlDiveCenters = `https://world-dive-centres-api.p.rapidapi.com/divecentres?query=${country}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': 'a94ad0ffc1msha4f057f28cdacdap142d8cjsnb40cd9745386',
+      'x-rapidapi-host': 'world-dive-centres-api.p.rapidapi.com',
+    },
+  };
+  try {
+    // Initiate a fetch request and await its response
+    const centersFetch = await fetch(urlDiveCenters, options);
+
+    // Ensure the response status indicates success
+    if (!centersFetch.ok) {
+      // If the status code is not in the successful range, throw an error
+      throw new Error(`HTTP error! Status: ${centersFetch.status}`);
+    }
+
+    // Await the parsing of the response body as JSON
+    const result = await centersFetch.json();
+
+    // Access Dive Site data
+    const diveCentersData = result.data as CentersData[];
+
+    // Access the first 10 or the total dive sites (whichever is lower)
+    const lastIndex = diveCentersData.length > 10 ? 10 : diveCentersData.length;
+    for (let i = 0; i < lastIndex; i++) {
+      const diveCenters: CentersData = {
+        name: diveCentersData[i].name,
+        location: diveCentersData[i].location,
+        type: diveCentersData[i].type,
+      };
+      // Successfully handle and output the object
+      console.log('diveCenters: ', diveCenters);
+    }
+  } catch (error) {
     console.error(error);
   }
 }
