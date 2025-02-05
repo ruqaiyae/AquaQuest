@@ -342,6 +342,22 @@ async function fetchData(country: string): Promise<void> {
     // Access Dive Site data
     const diveCentersData = result.data as CentersData[];
 
+    // Query the center-table-body to append DOM tree
+    const $centerTbody = document.querySelector('.center-tbody');
+    if (!$centerTbody) throw new Error('$siteTbody query failed');
+
+    $centerTbody.textContent = '';
+    if (country === 'default') {
+      const $placeholderRow = document.createElement('tr');
+      const $placeholderText = document.createElement('td');
+      $placeholderText.setAttribute('colspan', '4');
+      $placeholderText.className = 'table-placeholder';
+      $placeholderText.textContent =
+        'Select a country to view Dive Sites Information';
+      $placeholderRow.appendChild($placeholderText);
+      $centerTbody.appendChild($placeholderRow);
+    }
+
     // Access the first 10 or the total dive sites (whichever is lower)
     const lastIndex = diveCentersData.length > 10 ? 10 : diveCentersData.length;
     for (let i = 0; i < lastIndex; i++) {
@@ -350,8 +366,29 @@ async function fetchData(country: string): Promise<void> {
         location: diveCentersData[i].location,
         type: diveCentersData[i].type,
       };
-      // Successfully handle and output the object
-      console.log('diveCenters: ', diveCenters);
+
+      // Create the DOM tree to successfully handle and output the object
+      const $tr = document.createElement('tr');
+      const $tdCenterName = document.createElement('td');
+      $tdCenterName.textContent = diveCenters.name;
+      $tdCenterName.className = 'center-tbody-data border-left';
+
+      const $tdLocation = document.createElement('td');
+      $tdLocation.textContent = diveCenters.location;
+      $tdLocation.className = 'center-tbody-data';
+
+      const $tdType = document.createElement('td');
+      $tdType.textContent = diveCenters.type;
+      $tdType.className = 'center-tbody-data border-right';
+
+      if (i === lastIndex - 1) {
+        $tdCenterName.classList.add('border-bottom');
+        $tdLocation.classList.add('border-bottom');
+        $tdType.classList.add('border-bottom');
+      }
+
+      $tr.append($tdCenterName, $tdLocation, $tdType);
+      $centerTbody.appendChild($tr);
     }
   } catch (error) {
     console.error(error);
