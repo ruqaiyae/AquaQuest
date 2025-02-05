@@ -301,6 +301,7 @@
       </section>
     </main>
 
+    <!-- ExplorePage -->
     <div data-view="explore-page" class="view hidden">
       <form class="flex justify country-form">
         <div>
@@ -559,6 +560,191 @@
             </div>
           </div>
         </section>
+      </div>
+    </div>
+
+    <!-- LogbookPage -->
+    <div data-view="log-page" class="view hidden">
+      <div class="log-container">
+        <div data-view="entry-form" class="entry-form">
+          <h2 class="row col-full log-title">Dive Log</h2>
+          <form class="dive-log-form">
+            <div class="flex flex-wrap">
+              <div class="col-half">
+                <img
+                  src="images/placeholder-image-square.jpg"
+                  alt="placeholder-image-square"
+                  class="placeholder-image" />
+              </div>
+              <div class="col-half">
+                <label for="dive-number" class="form-labels">
+                  Dive Number:
+                </label>
+                <input
+                  type="text"
+                  id="dive-number"
+                  name="dive-number"
+                  required
+                  class="input-elements" />
+
+                <label for="date" class="form-labels">Date:</label>
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  value="2025-02-02"
+                  min="2000-01-01"
+                  max="2100-12-31"
+                  required
+                  class="input-elements" />
+
+                <label for="“location”" class="form-labels">Location:</label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  required
+                  class="input-elements" />
+
+                <label for="“site-name”" class="form-labels">Dive Site:</label>
+                <input
+                  type="text"
+                  id="site-name"
+                  name="site-name"
+                  required
+                  class="input-elements" />
+
+                <label for="img-file" class="form-labels">Photo URL</label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  id="img-file"
+                  name="img-file"
+                  required
+                  class="input-elements" />
+              </div>
+            </div>
+
+            <div class="flex flex-wrap">
+              <div class="col-half">
+                <label for="“time-in”" class="form-labels">Time In:</label>
+                <input
+                  type="time"
+                  id="time-in"
+                  name="time-in"
+                  min="00:00"
+                  max="24:00"
+                  required
+                  class="input-elements" />
+
+                <label for="“time-out”" class="form-labels">Time Out:</label>
+                <input
+                  type="time"
+                  id="time-out"
+                  name="time-out"
+                  min="00:00"
+                  max="24:00"
+                  required
+                  class="input-elements" />
+
+                <label for="“bottom-time”" class="form-labels">
+                  Bottom time:
+                </label>
+                <input
+                  type="time"
+                  id="“bottom-time”"
+                  name="bottom-time"
+                  min="00:00"
+                  max="24:00"
+                  required
+                  class="input-elements" />
+
+                <label for="“total-time”" class="form-labels">
+                  Total time:
+                </label>
+                <input
+                  type="time"
+                  id="“total-time”"
+                  name="total-time"
+                  min="00:00"
+                  max="24:00"
+                  required
+                  class="input-elements" />
+
+                <label for="“total-hours”" class="form-labels">
+                  Total dive hours:
+                </label>
+                <input
+                  type="time"
+                  id="“total-hours”"
+                  name="“total-hours”"
+                  min="00:00"
+                  max="24:00"
+                  required
+                  class="input-elements" />
+              </div>
+
+              <div class="col-half">
+                <label for="“max-depth”" class="form-labels">Max depth:</label>
+                <input
+                  type="text"
+                  id="max-depth"
+                  name="max-depth"
+                  required
+                  class="input-elements" />
+
+                <label for="“visibility”" class="form-labels">
+                  Visibility:
+                </label>
+                <input
+                  type="text"
+                  id="“visibility”"
+                  name="visibility"
+                  required
+                  class="input-elements" />
+
+                <label for="“air-in”" class="form-labels">Air in:</label>
+                <input
+                  type="text"
+                  id="“air-in”"
+                  name="air-in"
+                  required
+                  class="input-elements" />
+
+                <label for="“air-out”" class="form-labels">Air out:</label>
+                <input
+                  type="text"
+                  id="“air-out”"
+                  name="air-out"
+                  required
+                  class="input-elements" />
+
+                <label for="“weights”" class="form-labels">Weights:</label>
+                <input
+                  type="text"
+                  id="“weights”"
+                  name="weights"
+                  required
+                  class="input-elements" />
+              </div>
+            </div>
+
+            <div class="col-full">
+              <label for="notes" class="form-labels">Notes</label>
+              <textarea
+                id="notes"
+                name="notes"
+                required
+                rows="10"
+                class="input-elements textarea">
+              </textarea>
+            </div>
+
+            <div class="flex justify col-full log-btn-container">
+              <input type="submit" value="add" class="add-log-btn cursor" />
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
