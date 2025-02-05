@@ -393,4 +393,31 @@ async function fetchData(country: string): Promise<void> {
   } catch (error) {
     console.error(error);
   }
+
+  // Define parameters for Geocode fetch request
+  const apiKeyGeocode = 'AIzaSyB6fiptPxdTsjan6PcC1eWu2bWnHOjenKk';
+  const urlGeocode = 'https://maps.googleapis.com/maps/api/geocode/json';
+
+  try {
+    // Initiate a fetch request and await its response
+    const locationFetch = await fetch(
+      `${urlGeocode}?address=${country}&key=${apiKeyGeocode}`,
+    );
+    // Ensure the response status indicates success
+    if (!locationFetch.ok) {
+      // If the status code is not in the successful range, throw an error
+      throw new Error(`HTTP error! Status: ${locationFetch.status}`);
+    }
+    // Await the parsing of the response body as JSON
+    const locationResult = await locationFetch.json();
+    const geoLocation = locationResult.results[0].geometry.location;
+    const lat = geoLocation.lat;
+    const lng = geoLocation.lng;
+
+    console.log('lat: ', lat);
+    console.log('lng: ', lng);
+  } catch (error) {
+    // Log any errors that arise during the fetch operation
+    console.error(error);
+  }
 }
