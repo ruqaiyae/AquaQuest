@@ -238,4 +238,69 @@ async function fetchData(country) {
     // Log any errors that arise during the fetch operation
     console.error(error);
   }
+  // Define parameters for Dive Centers fetch request
+  const urlDiveCenters = `https://world-dive-centres-api.p.rapidapi.com/divecentres?query=${country}`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': 'a94ad0ffc1msha4f057f28cdacdap142d8cjsnb40cd9745386',
+      'x-rapidapi-host': 'world-dive-centres-api.p.rapidapi.com',
+    },
+  };
+  try {
+    // Initiate a fetch request and await its response
+    const centersFetch = await fetch(urlDiveCenters, options);
+    // Ensure the response status indicates success
+    if (!centersFetch.ok) {
+      // If the status code is not in the successful range, throw an error
+      throw new Error(`HTTP error! Status: ${centersFetch.status}`);
+    }
+    // Await the parsing of the response body as JSON
+    const result = await centersFetch.json();
+    // Access Dive Site data
+    const diveCentersData = result.data;
+    // Query the center-table-body to append DOM tree
+    const $centerTbody = document.querySelector('.center-tbody');
+    if (!$centerTbody) throw new Error('$siteTbody query failed');
+    $centerTbody.textContent = '';
+    if (country === 'default') {
+      const $placeholderRow = document.createElement('tr');
+      const $placeholderText = document.createElement('td');
+      $placeholderText.setAttribute('colspan', '4');
+      $placeholderText.className = 'table-placeholder';
+      $placeholderText.textContent =
+        'Select a country to view Dive Sites Information';
+      $placeholderRow.appendChild($placeholderText);
+      $centerTbody.appendChild($placeholderRow);
+    }
+    // Access the first 10 or the total dive sites (whichever is lower)
+    const lastIndex = diveCentersData.length > 10 ? 10 : diveCentersData.length;
+    for (let i = 0; i < lastIndex; i++) {
+      const diveCenters = {
+        name: diveCentersData[i].name,
+        location: diveCentersData[i].location,
+        type: diveCentersData[i].type,
+      };
+      // Create the DOM tree to successfully handle and output the object
+      const $tr = document.createElement('tr');
+      const $tdCenterName = document.createElement('td');
+      $tdCenterName.textContent = diveCenters.name;
+      $tdCenterName.className = 'center-tbody-data border-left';
+      const $tdLocation = document.createElement('td');
+      $tdLocation.textContent = diveCenters.location;
+      $tdLocation.className = 'center-tbody-data';
+      const $tdType = document.createElement('td');
+      $tdType.textContent = diveCenters.type;
+      $tdType.className = 'center-tbody-data border-right';
+      if (i === lastIndex - 1) {
+        $tdCenterName.classList.add('border-bottom');
+        $tdLocation.classList.add('border-bottom');
+        $tdType.classList.add('border-bottom');
+      }
+      $tr.append($tdCenterName, $tdLocation, $tdType);
+      $centerTbody.appendChild($tr);
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
