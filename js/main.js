@@ -56,6 +56,48 @@ $navLinks.addEventListener('click', (event) => {
     }
   }
 });
+// Modal
+const $modalView = document.querySelector('.modal-view');
+const $dialog = document.querySelector('dialog');
+const $openModal = document.querySelector('#open-modal');
+const $closeModal = document.querySelector('#close-modal-icon');
+const $addLog = document.querySelector('#add-log');
+const $addLogView = document.querySelector('.add-log-view');
+const $viewLog = document.querySelector('#view-log');
+const $viewLogView = document.querySelector('.view-log-view');
+const $editLog = document.querySelector('#edit-log');
+const $editLogView = document.querySelector('.edit-log-view');
+if (!$modalView) throw new Error('$modalView query failed.');
+if (!$dialog) throw new Error('$dialog query failed.');
+if (!$openModal) throw new Error('$openModal query failed.');
+if (!$closeModal) throw new Error('$closeModal query failed.');
+if (!$addLog) throw new Error('$addLog query failed.');
+if (!$addLogView) throw new Error('$logView query failed');
+if (!$viewLog) throw new Error('$viewLog query failed.');
+if (!$viewLogView) throw new Error('$viewLogView query failed.');
+if (!$editLog) throw new Error('$editLog query failed.');
+if (!$editLogView) throw new Error('$editLogView query failed.');
+$openModal.addEventListener('click', () => {
+  $dialog.showModal();
+});
+$closeModal.addEventListener('click', () => {
+  $dialog.close();
+});
+$addLog.addEventListener('click', () => {
+  $modalView.classList.add('hidden');
+  $addLogView.classList.remove('hidden');
+  $dialog.close();
+});
+$viewLog.addEventListener('click', () => {
+  $modalView.classList.add('hidden');
+  $viewLogView.classList.remove('hidden');
+  $dialog.close();
+});
+$editLog.addEventListener('click', () => {
+  $modalView.classList.add('hidden');
+  $editLogView.classList.remove('hidden');
+  $dialog.close();
+});
 // define a function for the carousel
 function initializeCarousel(siteContainerSelector, centerContainerSelector) {
   const $siteContainer = document.querySelector(siteContainerSelector);
@@ -485,18 +527,13 @@ $diveLogForm.addEventListener('submit', (event) => {
     notes: $formElements.notes.value,
     entryId: data.nextEntryId,
   };
-  console.log('log: ', log);
   data.nextEntryId++;
   data.logs.unshift(log);
-  console.log('log: ', log);
-  console.log('data: ', data);
   writeData();
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $diveLogForm.reset();
   const $homeView = document.querySelector('.home-view');
-  const $logView = document.querySelector('.log-view');
   if (!$homeView) throw new Error('$homeView query failed');
-  if (!$logView) throw new Error('$logView query failed');
   $homeView.classList.add('hidden');
-  $logView.classList.remove('hidden');
+  $viewLog.classList.remove('hidden');
 });

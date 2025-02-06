@@ -576,7 +576,66 @@ body {
   border-bottom: none;
 }
 
-/* Styles for log-page */
+/* Styles for log-options page */
+.modal-view {
+  height: 50rem;
+
+  @media screen and (width >=768px) {
+    height: 60rem;
+  }
+}
+
+.modal-actions {
+  height: 15rem;
+  width: 20rem;
+
+  @media screen and (width >=768px) {
+    height: 15rem;
+    width: 50rem;
+  }
+}
+
+.close-modal {
+  justify-content: flex-end;
+}
+
+#close-modal-icon {
+  font-size: 1rem;
+  color: #003b73;
+  margin-bottom: 1.5rem;
+
+  @media screen and (width >=768px) {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.modal-btns-container {
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (width >=768px) {
+    justify-content: space-around;
+  }
+}
+
+.modal-btns {
+  background-color: #ff6f61;
+  border: none;
+  color: #f7f9fc;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  padding: 0.7rem 2rem;
+  margin: 0.5rem 1rem;
+
+  @media screen and (width >=768px) {
+    font-size: 1.5rem;
+    padding: 1.2rem 3rem;
+    margin: 4rem 1rem 1rem;
+  }
+}
+
+/* Styles for add-log-page */
 .log-container {
   max-width: 575px;
   margin: 2rem 1rem;

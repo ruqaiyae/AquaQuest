@@ -27,16 +27,24 @@
     <header>
       <div class="nav-bar flex">
         <div class="col-nav flex nav-links">
-          <a class="nav-element cursor active-nav-element" data-view="home-page"
-            >Home</a
-          >
-          <a href="#" class="nav-element cursor" data-view="explore-page"
-            >Explore</a
-          >
-          <a href="#" class="nav-element cursor" data-view="learn-page"
-            >Learn</a
-          >
-          <a href="#" class="nav-element cursor" data-view="log-page">Log</a>
+          <a
+            class="nav-element cursor active-nav-element"
+            data-view="home-page">
+            Home
+          </a>
+          <a href="#" class="nav-element cursor" data-view="explore-page">
+            Explore
+          </a>
+          <a href="#" class="nav-element cursor" data-view="learn-page">
+            Learn
+          </a>
+          <a
+            href="#"
+            class="nav-element cursor"
+            id="open-modal"
+            data-view="logbook-options">
+            Log
+          </a>
           <div class="flex nav-icon-wrapper">
             <i class="fa-regular fa-heart icon heart-icon cursor"></i>
             <i class="fa-solid fa-user icon user-icon cursor"></i>
@@ -563,8 +571,48 @@
       </div>
     </div>
 
-    <!-- LogbookPage -->
-    <div data-view="log-page" class="log-view view hidden">
+    <!-- LogbookOptionsPage -->
+    <div data-view="logbook-options" class="modal-view view hidden">
+      <dialog>
+        <div class="modal-actions">
+          <div class="flex close-modal">
+            <i
+              class="fa-duotone fa-regular fa-xmark cursor"
+              id="close-modal-icon"></i>
+          </div>
+          <div class="flex modal-btns-container">
+            <div class="flex justify">
+              <button
+                data-view="add-log-page"
+                class="modal-btns cursor"
+                id="add-log">
+                Log
+              </button>
+            </div>
+            <div class="flex justify">
+              <button
+                data-view="view-log-page"
+                class="modal-btns cursor"
+                id="view-log">
+                View Logbook
+              </button>
+            </div>
+
+            <div class="flex justify">
+              <button
+                data-view="view-log-page"
+                class="modal-btns cursor"
+                id="edit-log">
+                Edit Logbook
+              </button>
+            </div>
+          </div>
+        </div>
+      </dialog>
+    </div>
+
+    <!-- AddLogPage -->
+    <div data-view="add-log-page" class="add-log-view view hidden">
       <div class="log-container">
         <div data-view="log-form" class="log-form">
           <h2 class="row col-full log-title">Dive Log</h2>
@@ -741,6 +789,12 @@
         </div>
       </div>
     </div>
+
+    <!-- ViewLogPage -->
+    <div data-view="view-log-page" class="view-log-view view hidden"></div>
+
+    <!-- EditLogPage -->
+    <div data-view="edit-log-page" class="edit-log-view view hidden"></div>
 
     <!-- Footer -->
     <footer>
