@@ -535,5 +535,6 @@ $diveLogForm.addEventListener('submit', (event) => {
   const $homeView = document.querySelector('.home-view');
   if (!$homeView) throw new Error('$homeView query failed');
   $homeView.classList.add('hidden');
-  $viewLog.classList.remove('hidden');
+  $addLogView.classList.add('hidden');
+  $viewLogView.classList.remove('hidden');
 });
