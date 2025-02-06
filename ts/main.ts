@@ -598,3 +598,96 @@ $imgFile.addEventListener('input', (event: Event) => {
   const $imgSrc = URL.createObjectURL($file);
   $placeholderImg.setAttribute('src', $imgSrc);
 });
+
+// Declare the FormElements response data type
+interface FormElements extends HTMLFormControlsCollection {
+  'dive-number': HTMLInputElement;
+  date: HTMLInputElement;
+  location: HTMLInputElement;
+  'site-name': HTMLInputElement;
+  'img-file': HTMLInputElement;
+  'time-in': HTMLInputElement;
+  'time-out': HTMLInputElement;
+  'bottom-time': HTMLInputElement;
+  'total-time': HTMLInputElement;
+  'total-hours': HTMLInputElement;
+  'max-depth': HTMLInputElement;
+  visibility: HTMLInputElement;
+  'air-in': HTMLInputElement;
+  'air-out': HTMLInputElement;
+  weights: HTMLInputElement;
+  notes: HTMLTextAreaElement;
+}
+
+// Declare the DiveLog response data type
+interface DiveLog {
+  'dive-number': string;
+  date: string;
+  location: string;
+  'site-name': string;
+  'img-file': string;
+  'time-in': string;
+  'time-out': string;
+  'bottom-time': string;
+  'total-time': string;
+  'total-hours': string;
+  'max-depth': string;
+  visibility: string;
+  'air-in': string;
+  'air-out': string;
+  weights: string;
+  notes: string;
+  entryId: number;
+}
+
+// querying the form to access form.elements
+const $diveLogForm = document.querySelector(
+  '.dive-log-form',
+) as HTMLFormElement;
+if (!$diveLogForm) throw new Error('$formElements query failed.');
+
+const $formElements = $diveLogForm.elements as FormElements;
+
+// adding an event listener to handle submit
+$diveLogForm.addEventListener('submit', (event: Event) => {
+  event.preventDefault();
+
+  const log: DiveLog = {
+    'dive-number': $formElements['dive-number'].value,
+    date: $formElements.date.value,
+    location: $formElements.location.value,
+    'site-name': $formElements['site-name'].value,
+    'img-file': $formElements['img-file'].value,
+    'time-in': $formElements['time-in'].value,
+    'time-out': $formElements['time-out'].value,
+    'bottom-time': $formElements['bottom-time'].value,
+    'total-time': $formElements['total-time'].value,
+    'total-hours': $formElements['total-hours'].value,
+    'max-depth': $formElements['max-depth'].value,
+    visibility: $formElements.visibility.value,
+    'air-in': $formElements['air-in'].value,
+    'air-out': $formElements['air-out'].value,
+    weights: $formElements.weights.value,
+    notes: $formElements.notes.value,
+    entryId: data.nextEntryId,
+  };
+
+  console.log('log: ', log);
+
+  data.nextEntryId++;
+  data.logs.unshift(log);
+  console.log('log: ', log);
+  console.log('data: ', data);
+  writeData();
+
+  $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $diveLogForm.reset();
+
+  const $homeView = document.querySelector('.home-view');
+  const $logView = document.querySelector('.log-view');
+  if (!$homeView) throw new Error('$homeView query failed');
+  if (!$logView) throw new Error('$logView query failed');
+
+  $homeView.classList.add('hidden');
+  $logView.classList.remove('hidden');
+});

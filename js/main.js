@@ -459,3 +459,44 @@ $imgFile.addEventListener('input', (event) => {
   const $imgSrc = URL.createObjectURL($file);
   $placeholderImg.setAttribute('src', $imgSrc);
 });
+// querying the form to access form.elements
+const $diveLogForm = document.querySelector('.dive-log-form');
+if (!$diveLogForm) throw new Error('$formElements query failed.');
+const $formElements = $diveLogForm.elements;
+// adding an event listener to handle submit
+$diveLogForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const log = {
+    'dive-number': $formElements['dive-number'].value,
+    date: $formElements.date.value,
+    location: $formElements.location.value,
+    'site-name': $formElements['site-name'].value,
+    'img-file': $formElements['img-file'].value,
+    'time-in': $formElements['time-in'].value,
+    'time-out': $formElements['time-out'].value,
+    'bottom-time': $formElements['bottom-time'].value,
+    'total-time': $formElements['total-time'].value,
+    'total-hours': $formElements['total-hours'].value,
+    'max-depth': $formElements['max-depth'].value,
+    visibility: $formElements.visibility.value,
+    'air-in': $formElements['air-in'].value,
+    'air-out': $formElements['air-out'].value,
+    weights: $formElements.weights.value,
+    notes: $formElements.notes.value,
+    entryId: data.nextEntryId,
+  };
+  console.log('log: ', log);
+  data.nextEntryId++;
+  data.logs.unshift(log);
+  console.log('log: ', log);
+  console.log('data: ', data);
+  writeData();
+  $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $diveLogForm.reset();
+  const $homeView = document.querySelector('.home-view');
+  const $logView = document.querySelector('.log-view');
+  if (!$homeView) throw new Error('$homeView query failed');
+  if (!$logView) throw new Error('$logView query failed');
+  $homeView.classList.add('hidden');
+  $logView.classList.remove('hidden');
+});

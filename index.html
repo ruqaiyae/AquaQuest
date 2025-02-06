@@ -49,7 +49,7 @@
     </header>
 
     <!-- HomePage -->
-    <main data-view="home-page" class="main-container view">
+    <main data-view="home-page" class="home-view view">
       <!-- Section: hero-text & hero-img -->
       <section class="hero-section">
         <div class="flex hero-text-container">
@@ -564,9 +564,9 @@
     </div>
 
     <!-- LogbookPage -->
-    <div data-view="log-page" class="view hidden">
+    <div data-view="log-page" class="log-view view hidden">
       <div class="log-container">
-        <div data-view="entry-form" class="entry-form">
+        <div data-view="log-form" class="log-form">
           <h2 class="row col-full log-title">Dive Log</h2>
           <form class="dive-log-form">
             <div class="flex flex-wrap">
@@ -598,7 +598,7 @@
                   required
                   class="input-elements" />
 
-                <label for="“location”" class="form-labels">Location:</label>
+                <label for="location" class="form-labels">Location:</label>
                 <input
                   type="text"
                   id="location"
@@ -606,7 +606,7 @@
                   required
                   class="input-elements" />
 
-                <label for="“site-name”" class="form-labels">Dive Site:</label>
+                <label for="site-name" class="form-labels">Dive Site:</label>
                 <input
                   type="text"
                   id="site-name"
@@ -627,7 +627,7 @@
 
             <div class="flex flex-wrap">
               <div class="col-half">
-                <label for="“time-in”" class="form-labels">Time In:</label>
+                <label for="time-in" class="form-labels">Time In:</label>
                 <input
                   type="time"
                   id="time-in"
@@ -637,7 +637,7 @@
                   required
                   class="input-elements" />
 
-                <label for="“time-out”" class="form-labels">Time Out:</label>
+                <label for="time-out" class="form-labels">Time Out:</label>
                 <input
                   type="time"
                   id="time-out"
@@ -647,45 +647,39 @@
                   required
                   class="input-elements" />
 
-                <label for="“bottom-time”" class="form-labels">
+                <label for="bottom-time" class="form-labels">
                   Bottom time:
                 </label>
                 <input
-                  type="time"
-                  id="“bottom-time”"
+                  type="text"
+                  id="bottom-time"
                   name="bottom-time"
-                  min="00:00"
-                  max="24:00"
                   required
                   class="input-elements" />
 
-                <label for="“total-time”" class="form-labels">
+                <label for="total-time" class="form-labels">
                   Total time:
                 </label>
                 <input
-                  type="time"
-                  id="“total-time”"
+                  type="text"
+                  id="total-time"
                   name="total-time"
-                  min="00:00"
-                  max="24:00"
                   required
                   class="input-elements" />
 
-                <label for="“total-hours”" class="form-labels">
+                <label for="total-hours" class="form-labels">
                   Total dive hours:
                 </label>
                 <input
-                  type="time"
-                  id="“total-hours”"
-                  name="“total-hours”"
-                  min="00:00"
-                  max="24:00"
+                  type="text"
+                  id="total-hours"
+                  name="total-hours"
                   required
                   class="input-elements" />
               </div>
 
               <div class="col-half">
-                <label for="“max-depth”" class="form-labels">Max depth:</label>
+                <label for="max-depth" class="form-labels">Max depth:</label>
                 <input
                   type="text"
                   id="max-depth"
@@ -693,36 +687,36 @@
                   required
                   class="input-elements" />
 
-                <label for="“visibility”" class="form-labels">
+                <label for="visibility" class="form-labels">
                   Visibility:
                 </label>
                 <input
                   type="text"
-                  id="“visibility”"
+                  id="visibility"
                   name="visibility"
                   required
                   class="input-elements" />
 
-                <label for="“air-in”" class="form-labels">Air in:</label>
+                <label for="air-in" class="form-labels">Air in:</label>
                 <input
                   type="text"
-                  id="“air-in”"
+                  id="air-in"
                   name="air-in"
                   required
                   class="input-elements" />
 
-                <label for="“air-out”" class="form-labels">Air out:</label>
+                <label for="air-out" class="form-labels">Air out:</label>
                 <input
                   type="text"
-                  id="“air-out”"
+                  id="air-out"
                   name="air-out"
                   required
                   class="input-elements" />
 
-                <label for="“weights”" class="form-labels">Weights:</label>
+                <label for="weights" class="form-labels">Weights:</label>
                 <input
                   type="text"
-                  id="“weights”"
+                  id="weights"
                   name="weights"
                   required
                   class="input-elements" />
