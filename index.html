@@ -17,6 +17,9 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet" />
     <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet" />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
@@ -38,13 +41,24 @@
           <a href="#" class="nav-element cursor" data-view="learn-page">
             Learn
           </a>
-          <a
-            href="#"
-            class="nav-element cursor"
-            id="open-modal"
-            data-view="logbook-options">
-            Log
-          </a>
+
+          <div class="nav-dropdown-container">
+            <div class="flex log-arrow-container">
+              <a
+                href="#"
+                class="nav-element cursor"
+                id="log-options"
+                data-view="logbook-options">
+                Log
+              </a>
+              <i class="bx bx-chevron-down" id="arrow"></i>
+            </div>
+            <div class="dropdown" id="dropdown">
+              <a href="#" id="add-log"> Add Dive Log </a>
+              <a href="#" id="view-logbook"> View Logbook </a>
+            </div>
+          </div>
+
           <div class="flex nav-icon-wrapper">
             <i class="fa-regular fa-heart icon heart-icon cursor"></i>
             <i class="fa-solid fa-user icon user-icon cursor"></i>
@@ -571,46 +585,6 @@
       </div>
     </div>
 
-    <!-- LogbookOptionsPage -->
-    <div data-view="logbook-options" class="modal-view view hidden">
-      <dialog>
-        <div class="modal-actions">
-          <div class="flex close-modal">
-            <i
-              class="fa-duotone fa-regular fa-xmark cursor"
-              id="close-modal-icon"></i>
-          </div>
-          <div class="flex modal-btns-container">
-            <div class="flex justify">
-              <button
-                data-view="add-log-page"
-                class="modal-btns cursor"
-                id="add-log">
-                Log
-              </button>
-            </div>
-            <div class="flex justify">
-              <button
-                data-view="view-log-page"
-                class="modal-btns cursor"
-                id="view-log">
-                View Logbook
-              </button>
-            </div>
-
-            <div class="flex justify">
-              <button
-                data-view="view-log-page"
-                class="modal-btns cursor"
-                id="edit-log">
-                Edit Logbook
-              </button>
-            </div>
-          </div>
-        </div>
-      </dialog>
-    </div>
-
     <!-- AddLogPage -->
     <div data-view="add-log-page" class="add-log-view view hidden">
       <div class="log-container">
@@ -662,12 +636,11 @@
                   required
                   class="input-elements" />
 
-                <label for="img-file" class="form-labels">Dive Photo</label>
+                <label for="img-url" class="form-labels">Dive Photo URL:</label>
                 <input
-                  type="file"
-                  accept="image/*"
-                  id="img-file"
-                  name="img-file"
+                  type="text"
+                  id="img-url"
+                  name="imgURL"
                   required
                   class="input-elements" />
               </div>
@@ -772,7 +745,7 @@
             </div>
 
             <div class="col-full">
-              <label for="notes" class="form-labels">Notes</label>
+              <label for="notes" class="form-labels">Notes:</label>
               <textarea
                 id="notes"
                 name="notes"
@@ -791,7 +764,21 @@
     </div>
 
     <!-- ViewLogPage -->
-    <div data-view="view-log-page" class="view-log-view view hidden"></div>
+    <div data-view="view-log-page" class="view-log-view view hidden">
+      <div class="view-log-container">
+        <div class="flex log-title-container">
+          <h2 class="col-same view-log-title">Logbook</h2>
+          <div class="flex flex-wrap col-same new-log-btn-container">
+            <a class="new-log-btn cursor">new</a>
+          </div>
+        </div>
+        <div class="flex justify no-record-container">
+          <p class="no-record">No logs have been recorded.</p>
+        </div>
+
+        <ul id="log-list"></ul>
+      </div>
+    </div>
 
     <!-- EditLogPage -->
     <div data-view="edit-log-page" class="edit-log-view view hidden"></div>

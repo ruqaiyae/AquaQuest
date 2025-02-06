@@ -1,45 +1,49 @@
-// query the DOM elements to add an event listener
+// query the DOM element to add an event listener
 const $navLinks = document.querySelector('.nav-links');
 const $navElement = document.querySelectorAll('.nav-element');
+const $view = document.querySelectorAll('.view');
 const $heartIcon = document.querySelector('.heart-icon');
 const $userIcon = document.querySelector('.user-icon');
-const $view = document.querySelectorAll('.view');
 
 if (!$navLinks) throw new Error('$navLinks query failed.');
-if (!$navElement) throw new Error('$navElement query failed.');
-if (!$heartIcon) throw new Error('$heartIcon query failed.');
-if (!$userIcon) throw new Error('$userIcon query failed.');
-if (!$view) throw new Error('$view query failed.');
+if (!$navElement || !$view)
+  throw new Error('$navElement or $view query failed.');
+if (!$heartIcon || !$userIcon)
+  throw new Error('$heartIcon or $userIcon query failed.');
 
 // add an eventListener to the nav-bar
 $navLinks.addEventListener('click', (event) => {
   const $eventTarget = event.target as HTMLAnchorElement;
+  swapView($eventTarget);
+});
 
+// Define a function to swap views and update the color of nav elements
+function swapView(eventTarget: HTMLAnchorElement): void {
   // to update color of nav-elements
-  if ($eventTarget.matches('.nav-element.cursor')) {
+  if (eventTarget.matches('.nav-element.cursor')) {
     for (let i = 0; i < $navElement.length; i++) {
-      if ($eventTarget === $navElement[i]) {
+      if (eventTarget === $navElement[i]) {
         $navElement[i].classList.add('active-nav-element');
       } else {
         $navElement[i].classList.remove('active-nav-element');
-        $heartIcon.classList.remove('active-icon');
+        $heartIcon?.classList.remove('active-icon');
       }
     }
-  } else if ($eventTarget === $heartIcon) {
+  } else if (eventTarget === $heartIcon) {
     $heartIcon.classList.add('active-icon');
     for (let i = 0; i < $navElement.length; i++) {
       $navElement[i].classList.remove('active-nav-element');
     }
-  } else if ($eventTarget === $userIcon) {
-    $heartIcon.classList.remove('active-icon');
+  } else if (eventTarget === $userIcon) {
+    $heartIcon?.classList.remove('active-icon');
     for (let i = 0; i < $navElement.length; i++) {
       $navElement[i].classList.remove('active-nav-element');
     }
   }
 
   // to swap views
-  if ($eventTarget.matches('.nav-element.cursor')) {
-    const $dataView = $eventTarget.dataset.view;
+  if (eventTarget.matches('.nav-element.cursor')) {
+    const $dataView = eventTarget.dataset.view;
     for (let i = 0; i < $view.length; i++) {
       if ($view[i].getAttribute('data-view') !== $dataView) {
         $view[i].classList.add('hidden');
@@ -47,66 +51,74 @@ $navLinks.addEventListener('click', (event) => {
         $view[i].classList.remove('hidden');
       }
     }
-  } else if ($eventTarget === $heartIcon) {
+  } else if (eventTarget === $heartIcon) {
     $heartIcon.classList.remove('hidden');
     for (let i = 0; i < $view.length; i++) {
       $view[i].classList.add('hidden');
     }
-  } else if ($eventTarget === $userIcon) {
-    $heartIcon.classList.remove('hidden');
+  } else if (eventTarget === $userIcon) {
+    $heartIcon?.classList.remove('hidden');
     for (let i = 0; i < $view.length; i++) {
       $view[i].classList.add('hidden');
     }
   }
-});
+}
 
-// Modal
-const $modalView = document.querySelector('.modal-view');
-const $dialog = document.querySelector('dialog');
-const $openModal = document.querySelector('#open-modal');
-const $closeModal = document.querySelector('#close-modal-icon');
-const $addLog = document.querySelector('#add-log');
+// Query for dropdown for log options
+const $dropdownBtn = document.getElementById('log-options');
+const $dropdownMenu = document.getElementById('dropdown');
+const $toggleArrow = document.getElementById('arrow');
+
+if (!$dropdownBtn) throw new Error('$dropdownBtn query failed');
+if (!$dropdownMenu) throw new Error('$dropdownMenu query failed');
+if (!$toggleArrow) throw new Error('$toggleArrow query failed');
+
+// Query for log option views
 const $addLogView = document.querySelector('.add-log-view');
-const $viewLog = document.querySelector('#view-log');
 const $viewLogView = document.querySelector('.view-log-view');
-const $editLog = document.querySelector('#edit-log');
-const $editLogView = document.querySelector('.edit-log-view');
+if (!$addLogView || !$viewLogView)
+  throw new Error('$logView or $viewLogView query failed');
 
-if (!$modalView) throw new Error('$modalView query failed.');
-if (!$dialog) throw new Error('$dialog query failed.');
-if (!$openModal) throw new Error('$openModal query failed.');
-if (!$closeModal) throw new Error('$closeModal query failed.');
-if (!$addLog) throw new Error('$addLog query failed.');
-if (!$addLogView) throw new Error('$logView query failed');
-if (!$viewLog) throw new Error('$viewLog query failed.');
-if (!$viewLogView) throw new Error('$viewLogView query failed.');
-if (!$editLog) throw new Error('$editLog query failed.');
-if (!$editLogView) throw new Error('$editLogView query failed.');
+// Toggle dropdown function
+const toggleDropdown = function (): void {
+  $dropdownMenu.classList.toggle('show');
+  $toggleArrow.classList.toggle('arrow');
+};
 
-$openModal.addEventListener('click', () => {
-  $dialog.showModal();
+// Toggle dropdown open/close when dropdown button is clicked
+$dropdownBtn.addEventListener('click', (event) => {
+  event.stopPropagation();
+  toggleDropdown();
 });
 
-$closeModal.addEventListener('click', () => {
-  $dialog.close();
-});
+// Query log options btns
+const $addLogBtn = document.getElementById('add-log');
+const $viewLogBtn = document.getElementById('view-logbook');
+if (!$addLogBtn || !$viewLogBtn)
+  throw new Error('$addLogBtn or $viewLogBtn query failed.');
 
-$addLog.addEventListener('click', () => {
-  $modalView.classList.add('hidden');
+// Listen for an event on log options
+$addLogBtn.addEventListener('click', () => {
+  for (let i = 0; i < $navElement.length; i++) {
+    $navElement[i].classList.remove('active-nav-element');
+    $view[i].classList.add('hidden');
+  }
   $addLogView.classList.remove('hidden');
-  $dialog.close();
 });
 
-$viewLog.addEventListener('click', () => {
-  $modalView.classList.add('hidden');
+$viewLogBtn.addEventListener('click', () => {
+  for (let i = 0; i < $navElement.length; i++) {
+    $navElement[i].classList.remove('active-nav-element');
+    $view[i].classList.add('hidden');
+  }
   $viewLogView.classList.remove('hidden');
-  $dialog.close();
 });
 
-$editLog.addEventListener('click', () => {
-  $modalView.classList.add('hidden');
-  $editLogView.classList.remove('hidden');
-  $dialog.close();
+// Close dropdown when dom element is clicked
+document.documentElement.addEventListener('click', function () {
+  if ($dropdownMenu.classList.contains('show')) {
+    toggleDropdown();
+  }
 });
 
 // define a function for the carousel
@@ -631,20 +643,17 @@ async function fetchData(country: string): Promise<void> {
 }
 
 // Query img and placeholder img to update src
-const $imgFile = document.querySelector('#img-file');
+const $imgURL = document.querySelector('#img-url');
 const $placeholderImg = document.querySelector('.placeholder-image');
 
-if (!$imgFile) throw new Error('$imgFile query failed.');
+if (!$imgURL) throw new Error('$imgURL query failed.');
 if (!$placeholderImg) throw new Error('$placeholderImg query failed.');
 
 // Add an event listener to update Photo URL
-$imgFile.addEventListener('input', (event: Event) => {
+$imgURL.addEventListener('input', (event: Event) => {
   const $eventTarget = event.target as HTMLInputElement;
-  const $file = $eventTarget.files?.[0];
 
-  if (!$file) return;
-
-  const $imgSrc = URL.createObjectURL($file);
+  const $imgSrc = $eventTarget.value;
   $placeholderImg.setAttribute('src', $imgSrc);
 });
 
@@ -654,7 +663,7 @@ interface FormElements extends HTMLFormControlsCollection {
   date: HTMLInputElement;
   location: HTMLInputElement;
   'site-name': HTMLInputElement;
-  'img-file': HTMLInputElement;
+  imgURL: HTMLInputElement;
   'time-in': HTMLInputElement;
   'time-out': HTMLInputElement;
   'bottom-time': HTMLInputElement;
@@ -674,7 +683,7 @@ interface DiveLog {
   date: string;
   location: string;
   'site-name': string;
-  'img-file': string;
+  imgURL: string;
   'time-in': string;
   'time-out': string;
   'bottom-time': string;
@@ -689,7 +698,7 @@ interface DiveLog {
   entryId: number;
 }
 
-// querying the form to access form.elements
+// Query the form to access form.elements
 const $diveLogForm = document.querySelector(
   '.dive-log-form',
 ) as HTMLFormElement;
@@ -697,7 +706,7 @@ if (!$diveLogForm) throw new Error('$formElements query failed.');
 
 const $formElements = $diveLogForm.elements as FormElements;
 
-// adding an event listener to handle submit
+// Add an event listener to handle submit
 $diveLogForm.addEventListener('submit', (event: Event) => {
   event.preventDefault();
 
@@ -706,7 +715,7 @@ $diveLogForm.addEventListener('submit', (event: Event) => {
     date: $formElements.date.value,
     location: $formElements.location.value,
     'site-name': $formElements['site-name'].value,
-    'img-file': $formElements['img-file'].value,
+    imgURL: $formElements.imgURL.value,
     'time-in': $formElements['time-in'].value,
     'time-out': $formElements['time-out'].value,
     'bottom-time': $formElements['bottom-time'].value,
@@ -725,13 +734,193 @@ $diveLogForm.addEventListener('submit', (event: Event) => {
   data.logs.unshift(log);
   writeData();
 
+  const entry = renderEntry(log);
+  $entriesContainer?.prepend(entry);
+
+  toggleNoLogs();
+
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $diveLogForm.reset();
 
+  // Swap views on form submit
   const $homeView = document.querySelector('.home-view');
   if (!$homeView) throw new Error('$homeView query failed');
 
   $homeView.classList.add('hidden');
   $addLogView.classList.add('hidden');
   $viewLogView.classList.remove('hidden');
+});
+
+// Define a function to create a DOM Tree
+function renderEntry(log: DiveLog): HTMLElement {
+  const $li = document.createElement('li');
+  $li.className = 'flex flex-wrap log-item';
+  $li.setAttribute('data-log-id', String(log.entryId));
+
+  const $imgContainer = document.createElement('div');
+  $imgContainer.className = 'col-full flex justify';
+
+  const $logImg = document.createElement('img');
+  $logImg.setAttribute('src', log.imgURL);
+  $logImg.setAttribute('alt', 'log-img');
+  $logImg.className = 'log-image';
+
+  $imgContainer.appendChild($logImg);
+
+  const $contentContainer = document.createElement('div');
+  $contentContainer.className = 'col-full log-content';
+
+  const $diveNumPencilContainer = document.createElement('div');
+  $diveNumPencilContainer.className = 'flex num-pen-container';
+
+  const $logDiveNum = document.createElement('p');
+  $logDiveNum.className = 'log-data log-dive-number col-90';
+  $logDiveNum.textContent = `DIVE NUMBER: ${log['dive-number']}`;
+
+  const $pencilContainer = document.createElement('div');
+  $pencilContainer.className = 'flex justify col-10';
+
+  const $pencil = document.createElement('i');
+  $pencil.className = 'fa-solid fa-pencil pencil-icon cursor';
+
+  $pencilContainer.appendChild($pencil);
+  $diveNumPencilContainer.append($logDiveNum, $pencilContainer);
+
+  const $logDate = document.createElement('p');
+  $logDate.className = 'log-data log-date';
+  $logDate.textContent = `DATE: ${log.date}`;
+
+  const $logLocation = document.createElement('p');
+  $logLocation.className = 'log-data log-location';
+  $logLocation.textContent = `LOCATION: ${log.location}`;
+
+  const $logSite = document.createElement('p');
+  $logSite.className = 'log-data log-site';
+  $logSite.textContent = `DIVE SITE: ${log['site-name']}`;
+
+  const $logContainerWrapper = document.createElement('div');
+  $logContainerWrapper.className = 'flex log-container-wrapper';
+
+  const $logTimeContainer = document.createElement('div');
+  $logTimeContainer.className = 'col-half log-time-container';
+
+  const $logTimeIn = document.createElement('p');
+  $logTimeIn.className = 'log-data log-time-in';
+  $logTimeIn.textContent = `TIME IN: ${log['time-in']}`;
+
+  const $logTimeOut = document.createElement('p');
+  $logTimeOut.className = 'log-data log-time-out';
+  $logTimeOut.textContent = `TIME OUT: ${log['time-out']}`;
+
+  const $logBottomTime = document.createElement('p');
+  $logBottomTime.className = 'log-data log-bottom-time';
+  $logBottomTime.textContent = `BOTTOM TIME: ${log['bottom-time']}`;
+
+  const $logTotalTime = document.createElement('p');
+  $logTotalTime.className = 'log-data log-total-time';
+  $logTotalTime.textContent = `TOTAL TIME: ${log['total-time']}`;
+
+  const $logHours = document.createElement('p');
+  $logHours.className = 'log-data log-hours';
+  $logHours.textContent = `TOTAL DIVE HOURS: ${log['total-hours']}`;
+
+  $logTimeContainer.append(
+    $logTimeIn,
+    $logTimeOut,
+    $logBottomTime,
+    $logTotalTime,
+    $logHours,
+  );
+
+  const $logMiscContainer = document.createElement('div');
+  $logMiscContainer.className = 'col-half log-misc-container';
+
+  const $logDepth = document.createElement('p');
+  $logDepth.className = 'log-data log-depth';
+  $logDepth.textContent = `MAX-DEPTH: ${log['max-depth']}`;
+
+  const $logVisibility = document.createElement('p');
+  $logVisibility.className = 'log-data log-visibility';
+  $logVisibility.textContent = `VISIBILITY: ${log.visibility}`;
+
+  const $logAirIn = document.createElement('p');
+  $logAirIn.className = 'log-data log-air-in';
+  $logAirIn.textContent = `AIR IN: ${log['air-in']}`;
+
+  const $logAirOut = document.createElement('p');
+  $logAirOut.className = 'log-data log-air-out';
+  $logAirOut.textContent = `AIR OUT: ${log['air-out']}`;
+
+  const $logWeights = document.createElement('p');
+  $logWeights.className = 'log-data log-weights';
+  $logWeights.textContent = `WEIGHTS: ${log.weights}`;
+
+  $logMiscContainer.append(
+    $logDepth,
+    $logVisibility,
+    $logAirIn,
+    $logAirOut,
+    $logWeights,
+  );
+
+  $logContainerWrapper.append($logTimeContainer, $logMiscContainer);
+
+  const $logNotes = document.createElement('p');
+  $logNotes.className = 'log-data log-notes';
+  $logNotes.textContent = log.notes;
+
+  $contentContainer.append(
+    $diveNumPencilContainer,
+    $logDate,
+    $logLocation,
+    $logSite,
+    $logContainerWrapper,
+    $logNotes,
+  );
+
+  $li.append($imgContainer, $contentContainer);
+
+  return $li;
+}
+
+// Query the container to list logs
+const $entriesContainer = document.querySelector('#log-list');
+if (!$entriesContainer) throw new Error('$entriesContainer query failed.');
+
+function renderEntryPage(): void {
+  for (let i = 0; i < data.logs.length; i++) {
+    const $log = renderEntry(data.logs[i]);
+    $entriesContainer?.append($log);
+  }
+  toggleNoLogs();
+}
+
+// Add an event listener to update the entries
+document.addEventListener('DOMContentLoaded', renderEntryPage);
+
+// Define a function to hide no-record message
+function toggleNoLogs(): void {
+  const $noLogs = document.querySelector('.no-record-container');
+  if (!$noLogs) throw new Error('$noEntries query failed.');
+
+  if (data.logs.length !== 0) {
+    $noLogs.classList.add('hidden');
+  } else {
+    $noLogs.classList.remove('hidden');
+  }
+}
+
+// Query the entry-form for view swap and appending the modal dialog
+const $logForm = document.querySelector('.log-form');
+if (!$logForm) throw new Error('$logForm query failed.');
+
+const $newLogBtn = document.querySelector('.new-log-btn');
+if (!$newLogBtn) throw new Error('$newBtn query failed.');
+
+$newLogBtn.addEventListener('click', () => {
+  $diveLogForm.reset();
+  $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+  $viewLogView.classList.add('hidden');
+  $addLogView.classList.remove('hidden');
 });

@@ -1,6 +1,5 @@
 /* exported data */
 interface Data {
-  view: string;
   logs: DiveLog[];
   editing: null | DiveLog;
   nextEntryId: number;
@@ -20,7 +19,6 @@ function readData(): Data {
     return JSON.parse(stringJSON);
   }
   return {
-    view: 'entry-form',
     logs: [],
     editing: null,
     nextEntryId: 1,

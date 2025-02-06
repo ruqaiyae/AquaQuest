@@ -10,7 +10,6 @@ function readData() {
     return JSON.parse(stringJSON);
   }
   return {
-    view: 'entry-form',
     logs: [],
     editing: null,
     nextEntryId: 1,

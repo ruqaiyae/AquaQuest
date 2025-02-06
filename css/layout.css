@@ -15,6 +15,10 @@
   }
 }
 
+.col-same {
+  width: 50%;
+}
+
 .col-one-fourth {
   width: 25%;
 }
@@ -37,4 +41,12 @@
   @media screen and (width > 768px) {
     width: 25%;
   }
+}
+
+.col-90 {
+  width: 90%;
+}
+
+.col-10 {
+  width: 10%;
 }
