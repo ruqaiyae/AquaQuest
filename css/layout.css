@@ -15,6 +15,10 @@
   }
 }
 
+.col-same {
+  width: 50%;
+}
+
 .col-one-fourth {
   width: 25%;
 }

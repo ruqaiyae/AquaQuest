@@ -791,7 +791,21 @@
     </div>
 
     <!-- ViewLogPage -->
-    <div data-view="view-log-page" class="view-log-view view hidden"></div>
+    <div data-view="view-log-page" class="view-log-view view hidden">
+      <div class="flex col-full view-log-container">
+        <div class="flex col-full log-title-container">
+          <h2 class="col-same view-log-title">Logbook</h2>
+          <div class="flex flex-wrap col-same new-log-btn-container">
+            <a class="new-log-btn cursor">new</a>
+          </div>
+        </div>
+        <p class="flex flex-wrap col-full no-record">
+          No logs have been recorded.
+        </p>
+
+        <ul id="log-list" class="hidden"></ul>
+      </div>
+    </div>
 
     <!-- EditLogPage -->
     <div data-view="edit-log-page" class="edit-log-view view hidden"></div>

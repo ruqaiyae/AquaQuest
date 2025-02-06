@@ -689,7 +689,7 @@ interface DiveLog {
   entryId: number;
 }
 
-// querying the form to access form.elements
+// Query the form to access form.elements
 const $diveLogForm = document.querySelector(
   '.dive-log-form',
 ) as HTMLFormElement;
@@ -697,7 +697,7 @@ if (!$diveLogForm) throw new Error('$formElements query failed.');
 
 const $formElements = $diveLogForm.elements as FormElements;
 
-// adding an event listener to handle submit
+// Add an event listener to handle submit
 $diveLogForm.addEventListener('submit', (event: Event) => {
   event.preventDefault();
 
@@ -725,13 +725,165 @@ $diveLogForm.addEventListener('submit', (event: Event) => {
   data.logs.unshift(log);
   writeData();
 
+  const entry = renderEntry(log);
+  $entriesContainer?.prepend(entry);
+
+  toggleNoLogs();
+
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $diveLogForm.reset();
 
+  // Swap views on form submit
   const $homeView = document.querySelector('.home-view');
   if (!$homeView) throw new Error('$homeView query failed');
 
   $homeView.classList.add('hidden');
   $addLogView.classList.add('hidden');
   $viewLogView.classList.remove('hidden');
+});
+
+// Define a function to create a DOM Tree
+function renderEntry(log: DiveLog): HTMLElement {
+  const $li = document.createElement('li');
+  $li.className = 'flex flex-wrap log-item';
+  $li.setAttribute('data-log-id', String(log.entryId));
+
+  const $imgContainer = document.createElement('div');
+  $imgContainer.className = 'col-half';
+
+  const $logImg = document.createElement('img');
+  $logImg.setAttribute('src', log['img-file']);
+  $logImg.setAttribute('alt', 'log-img');
+  $logImg.className = 'log-image';
+
+  $imgContainer.appendChild($logImg);
+
+  const $contentContainer = document.createElement('div');
+  $contentContainer.className = 'flex flex-wrap col-half log-content';
+
+  const $logDiveNum = document.createElement('p');
+  $logDiveNum.className = 'log-data log-dive-number col-90';
+  $logDiveNum.textContent = log['dive-number'];
+
+  const $pencilContainer = document.createElement('div');
+  $pencilContainer.className = 'flex flex-wrap justify col-10';
+
+  const $pencil = document.createElement('i');
+  $pencil.className = 'fa-solid fa-pencil pencil-icon cursor';
+
+  $pencilContainer.appendChild($pencil);
+
+  const $logDate = document.createElement('p');
+  $logDate.className = 'log-data log-date';
+  $logDate.textContent = log.date;
+
+  const $logSite = document.createElement('p');
+  $logSite.className = 'log-data log-site';
+  $logSite.textContent = log['site-name'];
+
+  const $logTimeIn = document.createElement('p');
+  $logTimeIn.className = 'log-data log-time-in';
+  $logTimeIn.textContent = log['time-in'];
+
+  const $logTimeOut = document.createElement('p');
+  $logTimeOut.className = 'log-data log-time-out';
+  $logTimeOut.textContent = log['time-out'];
+
+  const $logBottomTime = document.createElement('p');
+  $logBottomTime.className = 'log-data log-bottom-time';
+  $logBottomTime.textContent = log['bottom-time'];
+
+  const $logTotalTime = document.createElement('p');
+  $logTotalTime.className = 'log-data log-total-time';
+  $logTotalTime.textContent = log['total-time'];
+
+  const $logHours = document.createElement('p');
+  $logHours.className = 'log-data log-hours';
+  $logHours.textContent = log['total-hours'];
+
+  const $logDepth = document.createElement('p');
+  $logDepth.className = 'log-data log-depth';
+  $logDepth.textContent = log['max-depth'];
+
+  const $logVisibility = document.createElement('p');
+  $logVisibility.className = 'log-data log-visibility';
+  $logVisibility.textContent = log.visibility;
+
+  const $logAirIn = document.createElement('p');
+  $logAirIn.className = 'log-data log-air-in';
+  $logAirIn.textContent = log['air-in'];
+
+  const $logAirOut = document.createElement('p');
+  $logAirOut.className = 'log-data log-air-out';
+  $logAirOut.textContent = log['air-out'];
+
+  const $logWeights = document.createElement('p');
+  $logWeights.className = 'log-data log-weights';
+  $logWeights.textContent = log.weights;
+
+  const $logNotes = document.createElement('p');
+  $logNotes.className = 'log-data log-notes';
+  $logNotes.textContent = log.notes;
+
+  $contentContainer.append(
+    $logDiveNum,
+    $pencilContainer,
+    $logDate,
+    $logSite,
+    $logTimeIn,
+    $logTimeOut,
+    $logBottomTime,
+    $logTotalTime,
+    $logHours,
+    $logDepth,
+    $logVisibility,
+    $logAirIn,
+    $logAirOut,
+    $logWeights,
+    $logNotes,
+  );
+
+  $li.append($imgContainer, $contentContainer);
+
+  return $li;
+}
+
+// Query the container to list logs
+const $entriesContainer = document.querySelector('#log-list');
+if (!$entriesContainer) throw new Error('$entriesContainer query failed.');
+
+// Add an event listener to update the entries
+document.addEventListener('DOMContentLoaded', () => {
+  for (let i = 0; i < data.logs.length; i++) {
+    const $log = renderEntry(data.logs[i]);
+    $entriesContainer.append($log);
+  }
+  toggleNoLogs();
+});
+
+// Define a function to hide no-record message
+function toggleNoLogs(): void {
+  const $noLogs = document.querySelector('.no-record');
+  if (!$noLogs) throw new Error('$noEntries query failed.');
+
+  if (data.logs.length !== 0) {
+    $noLogs.classList.add('hidden');
+  } else {
+    $noLogs.classList.remove('hidden');
+  }
+}
+
+// Query the entry-form for view swap and appending the modal dialog
+const $logForm = document.querySelector('.log-form');
+if (!$logForm) throw new Error('$logForm query failed.');
+
+const $newLogBtn = document.querySelector('.new-log-btn');
+if (!$newLogBtn) throw new Error('$newBtn query failed.');
+
+$newLogBtn.addEventListener('click', () => {
+  $diveLogForm.reset();
+  $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+  $viewLogView.classList.add('hidden');
+  $addLogView.classList.remove('hidden');
 });
