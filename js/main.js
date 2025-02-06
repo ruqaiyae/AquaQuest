@@ -56,6 +56,48 @@ $navLinks.addEventListener('click', (event) => {
     }
   }
 });
+// Modal
+const $modalView = document.querySelector('.modal-view');
+const $dialog = document.querySelector('dialog');
+const $openModal = document.querySelector('#open-modal');
+const $closeModal = document.querySelector('#close-modal-icon');
+const $addLog = document.querySelector('#add-log');
+const $addLogView = document.querySelector('.add-log-view');
+const $viewLog = document.querySelector('#view-log');
+const $viewLogView = document.querySelector('.view-log-view');
+const $editLog = document.querySelector('#edit-log');
+const $editLogView = document.querySelector('.edit-log-view');
+if (!$modalView) throw new Error('$modalView query failed.');
+if (!$dialog) throw new Error('$dialog query failed.');
+if (!$openModal) throw new Error('$openModal query failed.');
+if (!$closeModal) throw new Error('$closeModal query failed.');
+if (!$addLog) throw new Error('$addLog query failed.');
+if (!$addLogView) throw new Error('$logView query failed');
+if (!$viewLog) throw new Error('$viewLog query failed.');
+if (!$viewLogView) throw new Error('$viewLogView query failed.');
+if (!$editLog) throw new Error('$editLog query failed.');
+if (!$editLogView) throw new Error('$editLogView query failed.');
+$openModal.addEventListener('click', () => {
+  $dialog.showModal();
+});
+$closeModal.addEventListener('click', () => {
+  $dialog.close();
+});
+$addLog.addEventListener('click', () => {
+  $modalView.classList.add('hidden');
+  $addLogView.classList.remove('hidden');
+  $dialog.close();
+});
+$viewLog.addEventListener('click', () => {
+  $modalView.classList.add('hidden');
+  $viewLogView.classList.remove('hidden');
+  $dialog.close();
+});
+$editLog.addEventListener('click', () => {
+  $modalView.classList.add('hidden');
+  $editLogView.classList.remove('hidden');
+  $dialog.close();
+});
 // define a function for the carousel
 function initializeCarousel(siteContainerSelector, centerContainerSelector) {
   const $siteContainer = document.querySelector(siteContainerSelector);
@@ -446,3 +488,52 @@ async function fetchData(country) {
     console.error(error);
   }
 }
+// Query img and placeholder img to update src
+const $imgFile = document.querySelector('#img-file');
+const $placeholderImg = document.querySelector('.placeholder-image');
+if (!$imgFile) throw new Error('$imgFile query failed.');
+if (!$placeholderImg) throw new Error('$placeholderImg query failed.');
+// Add an event listener to update Photo URL
+$imgFile.addEventListener('input', (event) => {
+  const $eventTarget = event.target;
+  const $file = $eventTarget.files?.[0];
+  if (!$file) return;
+  const $imgSrc = URL.createObjectURL($file);
+  $placeholderImg.setAttribute('src', $imgSrc);
+});
+// querying the form to access form.elements
+const $diveLogForm = document.querySelector('.dive-log-form');
+if (!$diveLogForm) throw new Error('$formElements query failed.');
+const $formElements = $diveLogForm.elements;
+// adding an event listener to handle submit
+$diveLogForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const log = {
+    'dive-number': $formElements['dive-number'].value,
+    date: $formElements.date.value,
+    location: $formElements.location.value,
+    'site-name': $formElements['site-name'].value,
+    'img-file': $formElements['img-file'].value,
+    'time-in': $formElements['time-in'].value,
+    'time-out': $formElements['time-out'].value,
+    'bottom-time': $formElements['bottom-time'].value,
+    'total-time': $formElements['total-time'].value,
+    'total-hours': $formElements['total-hours'].value,
+    'max-depth': $formElements['max-depth'].value,
+    visibility: $formElements.visibility.value,
+    'air-in': $formElements['air-in'].value,
+    'air-out': $formElements['air-out'].value,
+    weights: $formElements.weights.value,
+    notes: $formElements.notes.value,
+    entryId: data.nextEntryId,
+  };
+  data.nextEntryId++;
+  data.logs.unshift(log);
+  writeData();
+  $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $diveLogForm.reset();
+  const $homeView = document.querySelector('.home-view');
+  if (!$homeView) throw new Error('$homeView query failed');
+  $homeView.classList.add('hidden');
+  $viewLog.classList.remove('hidden');
+});

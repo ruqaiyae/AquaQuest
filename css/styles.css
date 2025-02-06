@@ -348,6 +348,7 @@ body {
   }
 }
 
+/* Styles for explore page */
 .country-form {
   margin: 3rem 0 0;
 
@@ -573,6 +574,158 @@ body {
 
 .border-bottom {
   border-bottom: none;
+}
+
+/* Styles for log-options page */
+.modal-view {
+  height: 50rem;
+
+  @media screen and (width >=768px) {
+    height: 60rem;
+  }
+}
+
+.modal-actions {
+  height: 15rem;
+  width: 20rem;
+
+  @media screen and (width >=768px) {
+    height: 15rem;
+    width: 50rem;
+  }
+}
+
+.close-modal {
+  justify-content: flex-end;
+}
+
+#close-modal-icon {
+  font-size: 1rem;
+  color: #003b73;
+  margin-bottom: 1.5rem;
+
+  @media screen and (width >=768px) {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.modal-btns-container {
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @media screen and (width >=768px) {
+    justify-content: space-around;
+  }
+}
+
+.modal-btns {
+  background-color: #ff6f61;
+  border: none;
+  color: #f7f9fc;
+  border-radius: 1.5rem;
+  font-size: 1.2rem;
+  padding: 0.7rem 2rem;
+  margin: 0.5rem 1rem;
+
+  @media screen and (width >=768px) {
+    font-size: 1.5rem;
+    padding: 1.2rem 3rem;
+    margin: 4rem 1rem 1rem;
+  }
+}
+
+/* Styles for add-log-page */
+.log-container {
+  max-width: 575px;
+  margin: 2rem 1rem;
+  padding: 0 1.5rem;
+
+  @media screen and (width >= 768px) {
+    max-width: 900px;
+    margin: 10rem auto 2rem;
+  }
+
+  @media screen and (width >= 1200px) {
+    margin: 8rem auto 2rem;
+  }
+}
+
+.log-title {
+  color: #ff6f61;
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: center;
+
+  @media screen and (width >= 768px) {
+    font-size: 3rem;
+    text-align: left;
+  }
+}
+
+.placeholder-image {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.form-labels {
+  display: block;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+
+  @media screen and (width >=768px) {
+    font-size: 1.5rem;
+  }
+}
+
+.input-elements {
+  display: block;
+  margin-top: 0.7rem;
+  margin-bottom: 2rem;
+  padding: 0.3rem;
+  width: 100%;
+  border: 0.1rem solid #6c757d;
+  border-radius: 0.5rem;
+  height: 30px;
+}
+
+.textarea {
+  height: auto;
+}
+
+.input-elements:focus {
+  outline-color: #003b73;
+}
+
+.img-input {
+  display: flex;
+  align-items: flex-end;
+}
+
+.img-input-container {
+  width: 100%;
+}
+
+@media screen and (width>=768px) {
+  .log-btn-container {
+    justify-content: flex-end;
+  }
+}
+
+.add-log-btn {
+  background-color: #ff6f61;
+  color: #f7f9fc;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 2rem;
+
+  @media screen and (width >= 768px) {
+    font-size: 1.5rem;
+    margin: 1rem;
+    padding: 1rem 2.5rem;
+  }
 }
 
 @media only screen and (width >= 768px) {
