@@ -94,6 +94,7 @@ $addLogBtn.addEventListener('click', () => {
     $view[i].classList.add('hidden');
   }
   $addLogView.classList.remove('hidden');
+  $diveLogForm.reset();
 });
 $viewLogBtn.addEventListener('click', () => {
   for (let i = 0; i < $navElement.length; i++) {
@@ -513,6 +514,9 @@ $imgURL.addEventListener('input', (event) => {
 const $diveLogForm = document.querySelector('.dive-log-form');
 if (!$diveLogForm) throw new Error('$formElements query failed.');
 const $formElements = $diveLogForm.elements;
+// Query the container to list logs
+const $entriesContainer = document.querySelector('#log-list');
+if (!$entriesContainer) throw new Error('$entriesContainer query failed.');
 // Add an event listener to handle submit
 $diveLogForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -535,11 +539,33 @@ $diveLogForm.addEventListener('submit', (event) => {
     notes: $formElements.notes.value,
     entryId: data.nextEntryId,
   };
+  // adding a condition to check if it's a new entry or the user is editing an old entry
+  if (data.editing === null) {
+    const diveLog = renderEntry(log);
+    $entriesContainer.prepend(diveLog);
+    data.logs.unshift(log);
+    data.nextEntryId++;
+  } else {
+    log.entryId = data.editing.entryId;
+    // replacing the old object with the new object in the array
+    for (let i = 0; i < data.logs.length; i++) {
+      if (log.entryId === data.logs[i].entryId) {
+        data.logs.splice(i, 1, log);
+      }
+    }
+    // replacing the old DOM Tree with the updated DOM Tree
+    const editedLogEntry = renderEntry(log);
+    const $liList = document.querySelectorAll('li');
+    if (!$liList) throw new Error('$liList query failed');
+    for (let i = 0; i < $liList.length; i++) {
+      if ($liList[i].dataset.entryId === String(log.entryId)) {
+        $liList[i].replaceWith(editedLogEntry);
+      }
+    }
+    data.editing = null;
+  }
   data.nextEntryId++;
-  data.logs.unshift(log);
   writeData();
-  const entry = renderEntry(log);
-  $entriesContainer?.prepend(entry);
   toggleNoLogs();
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
   $diveLogForm.reset();
@@ -547,14 +573,13 @@ $diveLogForm.addEventListener('submit', (event) => {
   const $homeView = document.querySelector('.home-view');
   if (!$homeView) throw new Error('$homeView query failed');
   $homeView.classList.add('hidden');
-  $addLogView.classList.add('hidden');
-  $viewLogView.classList.remove('hidden');
+  swapLogView('viewLogView');
 });
 // Define a function to create a DOM Tree
 function renderEntry(log) {
   const $li = document.createElement('li');
   $li.className = 'flex flex-wrap log-item';
-  $li.setAttribute('data-log-id', String(log.entryId));
+  $li.setAttribute('data-entry-id', String(log.entryId));
   const $imgContainer = document.createElement('div');
   $imgContainer.className = 'col-full flex justify';
   const $logImg = document.createElement('img');
@@ -649,18 +674,25 @@ function renderEntry(log) {
   $li.append($imgContainer, $contentContainer);
   return $li;
 }
-// Query the container to list logs
-const $entriesContainer = document.querySelector('#log-list');
-if (!$entriesContainer) throw new Error('$entriesContainer query failed.');
-function renderEntryPage() {
+// Adding an event listener to update the entries
+document.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < data.logs.length; i++) {
-    const $log = renderEntry(data.logs[i]);
-    $entriesContainer?.append($log);
+    const $entry = renderEntry(data.logs[i]);
+    $entriesContainer.append($entry);
   }
+  // viewSwap(data.view);
   toggleNoLogs();
+});
+function swapLogView(view) {
+  if (view === 'addLogView') {
+    $addLogView?.classList.remove('hidden');
+    $viewLogView?.classList.add('hidden');
+    addSaveBtnToggle('add');
+  } else if (view === 'viewLogView') {
+    $viewLogView?.classList.remove('hidden');
+    $addLogView?.classList.add('hidden');
+  }
 }
-// Add an event listener to update the entries
-document.addEventListener('DOMContentLoaded', renderEntryPage);
 // Define a function to hide no-record message
 function toggleNoLogs() {
   const $noLogs = document.querySelector('.no-record-container');
@@ -671,14 +703,79 @@ function toggleNoLogs() {
     $noLogs.classList.remove('hidden');
   }
 }
-// Query the entry-form for view swap and appending the modal dialog
-const $logForm = document.querySelector('.log-form');
-if (!$logForm) throw new Error('$logForm query failed.');
 const $newLogBtn = document.querySelector('.new-log-btn');
 if (!$newLogBtn) throw new Error('$newBtn query failed.');
 $newLogBtn.addEventListener('click', () => {
   $diveLogForm.reset();
   $placeholderImg.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $viewLogView.classList.add('hidden');
-  $addLogView.classList.remove('hidden');
+  swapLogView('addLogView');
+  addSaveBtnToggle('add');
+});
+const $deleteLogBtn = document.querySelector('.delete-log-btn');
+if (!$deleteLogBtn) throw new Error('$deleteLogBtn query failed.');
+// Adding an event listener to the <ul> -> pencil-icon with event delegation
+$entriesContainer.addEventListener('click', (event) => {
+  const $eventTarget = event.target;
+  if (!$eventTarget.classList.contains('pencil-icon')) {
+    return;
+  }
+  swapLogView('addLogView');
+  const $listItem = $eventTarget.closest('li');
+  const $itemID = Number($listItem?.dataset.entryId);
+  for (let i = 0; i < data.logs.length; i++) {
+    if (data.logs[i].entryId === $itemID) {
+      data.editing = data.logs[i];
+    }
+  }
+  if (data.editing) {
+    $formElements['dive-number'].value = data.editing['dive-number'];
+    $formElements.date.value = data.editing.date;
+    $formElements.location.value = data.editing.location;
+    $formElements['site-name'].value = data.editing['site-name'];
+    $formElements.imgURL.value = data.editing.imgURL;
+    $formElements['time-in'].value = data.editing['time-in'];
+    $formElements['time-out'].value = data.editing['time-out'];
+    $formElements['bottom-time'].value = data.editing['bottom-time'];
+    $formElements['total-time'].value = data.editing['total-time'];
+    $formElements['total-hours'].value = data.editing['total-hours'];
+    $formElements['max-depth'].value = data.editing['max-depth'];
+    $formElements['air-in'].value = data.editing['air-in'];
+    $formElements['air-out'].value = data.editing['air-out'];
+    $formElements.visibility.value = data.editing.visibility;
+    $formElements.weights.value = data.editing.weights;
+    $formElements.notes.value = data.editing.notes;
+    $placeholderImg.setAttribute('src', data.editing.imgURL);
+    addSaveBtnToggle('save');
+    $deleteLogBtn.classList.remove('hidden');
+    const $logBtnContainer = document.querySelector('.log-btn-container');
+    if (!$logBtnContainer) throw new Error('$logBtnContainer query failed.');
+    $logBtnContainer.classList.replace('justify', 'btn-space');
+  }
+});
+function addSaveBtnToggle(btnValue) {
+  const $saveLogBtn = document.querySelector('.add-log-btn');
+  if (!$saveLogBtn) throw new Error('$saveLogBtn query failed.');
+  if (btnValue === 'add') {
+    $saveLogBtn.setAttribute('value', 'Add');
+  } else if (btnValue === 'save') {
+    $saveLogBtn.setAttribute('value', 'Save');
+  }
+}
+$deleteLogBtn.addEventListener('click', () => {
+  if (data.editing) {
+    const $li = document.querySelectorAll('li');
+    for (let i = 0; i < $li.length; i++) {
+      if ($li[i].dataset.entryId === String(data.editing.entryId)) {
+        $li[i].remove();
+      }
+    }
+    for (let i = 0; i < data.logs.length; i++) {
+      if (data.logs[i].entryId === data.editing.entryId) {
+        data.logs.splice(i, 1);
+      }
+    }
+  }
+  writeData();
+  toggleNoLogs();
+  swapLogView('viewLogView');
 });

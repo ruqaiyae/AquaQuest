@@ -787,6 +787,26 @@ body {
   }
 }
 
+.btn-space {
+  justify-content: space-between;
+}
+
+.delete-log-btn {
+  background-color: #ff6f61;
+  color: #f7f9fc;
+  border: none;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  padding: 1rem 2.5rem;
+  border-radius: 2rem;
+
+  @media screen and (width >= 768px) {
+    font-size: 1.5rem;
+    margin: 1rem;
+    padding: 1rem 2.5rem;
+  }
+}
+
 .add-log-btn {
   background-color: #ff6f61;
   color: #f7f9fc;
