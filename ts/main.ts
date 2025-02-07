@@ -275,6 +275,9 @@ $form.addEventListener('submit', (event: Event) => {
 
   // Execute the async function to perform the fetch operation
   fetchData(selectedCountry);
+  const $tip = document.querySelector('.dive-center-tip');
+  if (!$tip) throw new Error('$tip query failed.');
+  $tip.classList.remove('hidden');
 });
 
 // Declare the Dive Site response data type
@@ -538,7 +541,6 @@ async function fetchData(country: string): Promise<void> {
       windSpeed,
       windGusts,
     };
-
     // Successfully handle and output the object
     // Create the HTML for the weather.date
     for (let i = 0; i < weather.date.length; i++) {

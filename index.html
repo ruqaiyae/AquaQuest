@@ -65,7 +65,7 @@
           </div>
         </div>
       </div>
-      <div class="col-logo logo-container">
+      <div class="logo-container">
         <img src="./images/Logo.png" alt="Logo" class="header-logo" />
       </div>
     </header>
@@ -74,7 +74,7 @@
     <main data-view="home-page" class="home-view view">
       <!-- Section: hero-text & hero-img -->
       <section class="hero-section">
-        <div class="flex hero-text-container">
+        <div class="flex justify hero-text-container">
           <p class="hero-text">Explore. Dive. Log. Repeat.</p>
         </div>
         <div class="flex hero-img-wrapper">
@@ -551,6 +551,13 @@
               </table>
             </div>
           </div>
+          <div class="flex dive-center-tip hidden">
+            <i class="fa-regular fa-lightbulb lightbulb"></i>
+            <p>
+              Tip: Always check for reviews and instructor qualifications before
+              choosing a dive center.
+            </p>
+          </div>
         </section>
 
         <section class="explore-weather">
@@ -783,8 +790,216 @@
       </div>
     </div>
 
-    <!-- EditLogPage -->
-    <div data-view="edit-log-page" class="edit-log-view view hidden"></div>
+    <!-- LearnPage -->
+    <div data-view="learn-page" class="learn-view view hidden">
+      <section class="learn-section">
+        <div class="flex justify learn-title-container">
+          <p class="learn-title">
+            Certifications: Choosing the Right Dive Training Agency
+          </p>
+        </div>
+        <div class="flex justify">
+          <p class="learn-text">
+            If you're looking to get scuba certified or advance your diving
+            skills, here's everything you need to know about
+            <span class="bold">
+              PADI, SSI, and other scuba certification agencies.
+            </span>
+          </p>
+        </div>
+
+        <p class="learn-subheading">
+          PADI vs. SSI: Which One is Right for You?
+        </p>
+        <table class="course-table">
+          <tr>
+            <th>Feature</th>
+            <th class="course-title">
+              PADI (Professional Association of Diving Instructors)
+            </th>
+            <th class="course-title">SSI (Scuba Schools International)</th>
+          </tr>
+          <tr>
+            <th>Course Structure</th>
+            <td>Fixed, standardized courses worldwide</td>
+            <td>More flexible, instructor-driven approach</td>
+          </tr>
+          <tr>
+            <th>Learning Material</th>
+            <td>Must purchase PADI e-learning separately</td>
+            <td>Digital materials often provided for free</td>
+          </tr>
+          <tr>
+            <th>Skill Mastery</th>
+            <td>Must complete all skills in a set order</td>
+            <td>Instructor can adjust training based on comfort level</td>
+          </tr>
+          <tr>
+            <th>Dive Log System</th>
+            <td>PADI App &amp; logbook</td>
+            <td>MySSI App (digital logbook &amp; training records)</td>
+          </tr>
+          <tr>
+            <th>Cost</th>
+            <td>Generally higher due to separate material purchases</td>
+            <td>Often lower as dive centers may include materials</td>
+          </tr>
+          <tr>
+            <th>Certification Recognition</th>
+            <td>Recognized worldwide</td>
+            <td>Recognized worldwide</td>
+          </tr>
+          <tr>
+            <th>Pathway to Pro Level</th>
+            <td>Requires more specific steps and courses</td>
+            <td>Slightly more flexibility in training pathways</td>
+          </tr>
+          <tr>
+            <th>Best For</th>
+            <td>Divers who prefer a structured, widely recognized course</td>
+            <td>Those who want a more flexible, instructor-led experience</td>
+          </tr>
+        </table>
+
+        <p class="learn-subheading other-subheading">
+          Other Scuba Certification Agencies
+        </p>
+        <table class="course-table">
+          <tr>
+            <th class="course-title">Agency</th>
+            <th class="course-title">Recognition</th>
+            <th class="course-title">Best For</th>
+          </tr>
+          <tr>
+            <th>NAUI (National Association of Underwater Instructors)</th>
+            <td>Worldwide</td>
+            <td>Leadership-level training, flexible instructor approach</td>
+          </tr>
+          <tr>
+            <th>SDI (Scuba Diving International)</th>
+            <td>Worldwide</td>
+            <td>Tech-diving enthusiasts, online learning focus</td>
+          </tr>
+          <tr>
+            <th>CMAS (Confédération Mondiale des Activités Subaquatiques)</th>
+            <td>Europe, worldwide</td>
+            <td>Strict European standards, traditional scuba training</td>
+          </tr>
+          <tr>
+            <th>BSAC (British Sub-Aqua Club)</th>
+            <td>UK, some worldwide</td>
+            <td>Club-based training, cold-water diving specialists</td>
+          </tr>
+        </table>
+
+        <div
+          class="flex align-base learn-subheading other-subheading b-margin-title">
+          <i class="fa-solid fa-trophy learn-page-icons"></i>
+          <p>Which Certification Should You Choose?</p>
+        </div>
+        <ul class="learn-page-ul">
+          <li class="learn-page-li">
+            If you <span class="bold">travel frequently</span>, PADI or SSI are
+            the best choices due to their global recognition.
+          </li>
+          <li class="learn-page-li">
+            If you want a <span class="bold">leadership pathway</span>, NAUI
+            might be a better option.
+          </li>
+          <li class="learn-page-li">
+            If you're interested in <span class="bold">technical diving</span>,
+            SDI offers strong advanced training.
+          </li>
+          <li class="learn-page-li">
+            If you're in <span class="bold">Europe</span>, CMAS and BSAC provide
+            structured, club-based diving education.
+          </li>
+        </ul>
+        <div class="flex thumbtack-container">
+          <i class="fa fa-thumb-tack thumbtack-icon"></i>
+          <p class="thumbtack-text bold">
+            No matter which agency you choose, your certification will allow you
+            to explore the underwater world safely and confidently!
+          </p>
+        </div>
+
+        <div
+          class="flex align-base learn-subheading other-subheading b-margin-title">
+          <i class="fa-solid fa-medal learn-page-icons"></i>
+          <p>Recommended Courses for Beginners &amp; Advanced Divers</p>
+        </div>
+        <p class="ul-subheading">
+          <span class="bold">Beginner Courses</span> (No Experience Required):
+        </p>
+        <ul class="learn-page-ul list-margin">
+          <li class="check-mark">
+            <span class="bold">PADI Open Water Diver</span> (or equivalent from
+            SSI, NAUI, SDI) - Your first certification to dive up to 18m (60ft).
+          </li>
+          <li class="check-mark">
+            <span class="bold">SSI Scuba Diver</span> - A shorter course for
+            those wanting a limited certification.
+          </li>
+          <li class="check-mark">
+            <span class="bold">CMAS 1-Star Diver</span> - Basic diving
+            certification in Europe.
+          </li>
+        </ul>
+
+        <p class="ul-subheading">
+          <span class="bold">Advanced &amp; Specialty Courses:</span>
+        </p>
+        <ul class="learn-page-ul list-margin" id="list-margin-bottom">
+          <li class="check-mark">
+            <span class="bold">Advanced Open Water Diver</span> - Dive deeper
+            (up to 30m/100ft) and improve skills.
+          </li>
+          <li class="check-mark">
+            <span class="bold">Rescue Diver</span> - Learn emergency skills and
+            become a safer diver.
+          </li>
+          <li class="check-mark">
+            <span class="bold">Deep Diver Specialty</span> - Explore depths up
+            to 40m (130ft).
+          </li>
+          <li class="check-mark">
+            <span class="bold">Wreck Diving Specialty</span> - Perfect for those
+            who want to explore shipwrecks.
+          </li>
+          <li class="check-mark">
+            <span class="bold"
+              >Technical Diving (TecRec, SDI, or NAUI Tech)
+            </span>
+            - For deep and cave diving enthusiasts.
+          </li>
+        </ul>
+
+        <div
+          class="flex align-base learn-subheading other-subheading b-margin-title"
+          id="certified-container">
+          <i class="fa-solid fa-star learn-page-icons"></i>
+          <p id="certified-title">Why Get Certified?</p>
+        </div>
+        <ul class="learn-page-ul">
+          <li class="learn-page-li">
+            <span class="bold">Explore new worlds</span> - Unlock access to
+            incredible dive sites
+          </li>
+          <li class="learn-page-li">
+            <span class="bold">Dive safely</span> - Learn essential skills to
+            protect yourself and the ocean.
+          </li>
+          <li class="learn-page-li">
+            <span class="bold">Meet new people</span> - Join a global community
+            of divers.
+          </li>
+          <li class="learn-page-li">
+            <span class="bold">Turn your passion into a career</span> - Become a
+            Divemaster or Instructor!
+          </li>
+        </ul>
+      </section>
+    </div>
 
     <!-- Footer -->
     <footer>
