@@ -101,6 +101,8 @@ if (!$addLogBtn || !$viewLogBtn)
 $addLogBtn.addEventListener('click', () => {
   for (let i = 0; i < $navElement.length; i++) {
     $navElement[i].classList.remove('active-nav-element');
+  }
+  for (let i = 0; i < $view.length; i++) {
     $view[i].classList.add('hidden');
   }
   $addLogView.classList.remove('hidden');
@@ -110,6 +112,8 @@ $addLogBtn.addEventListener('click', () => {
 $viewLogBtn.addEventListener('click', () => {
   for (let i = 0; i < $navElement.length; i++) {
     $navElement[i].classList.remove('active-nav-element');
+  }
+  for (let i = 0; i < $view.length; i++) {
     $view[i].classList.add('hidden');
   }
   $viewLogView.classList.remove('hidden');
