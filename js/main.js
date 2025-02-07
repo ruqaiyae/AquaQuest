@@ -217,6 +217,9 @@ $form.addEventListener('submit', (event) => {
   const selectedCountry = $select.value;
   // Execute the async function to perform the fetch operation
   fetchData(selectedCountry);
+  const $tip = document.querySelector('.dive-center-tip');
+  if (!$tip) throw new Error('$tip query failed.');
+  $tip.classList.remove('hidden');
 });
 // Define an asynchronous function to fetch data
 async function fetchData(country) {
