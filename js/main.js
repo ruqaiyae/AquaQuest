@@ -711,6 +711,8 @@ $newLogBtn.addEventListener('click', () => {
   swapLogView('addLogView');
   addSaveBtnToggle('add');
 });
+const $deleteLogBtn = document.querySelector('.delete-log-btn');
+if (!$deleteLogBtn) throw new Error('$deleteLogBtn query failed.');
 // Adding an event listener to the <ul> -> pencil-icon with event delegation
 $entriesContainer.addEventListener('click', (event) => {
   const $eventTarget = event.target;
@@ -744,8 +746,6 @@ $entriesContainer.addEventListener('click', (event) => {
     $formElements.notes.value = data.editing.notes;
     $placeholderImg.setAttribute('src', data.editing.imgURL);
     addSaveBtnToggle('save');
-    const $deleteLogBtn = document.querySelector('.delete-log-btn');
-    if (!$deleteLogBtn) throw new Error('$deleteLogBtn query failed.');
     $deleteLogBtn.classList.remove('hidden');
     const $logBtnContainer = document.querySelector('.log-btn-container');
     if (!$logBtnContainer) throw new Error('$logBtnContainer query failed.');
@@ -761,3 +761,21 @@ function addSaveBtnToggle(btnValue) {
     $saveLogBtn.setAttribute('value', 'Save');
   }
 }
+$deleteLogBtn.addEventListener('click', () => {
+  if (data.editing) {
+    const $li = document.querySelectorAll('li');
+    for (let i = 0; i < $li.length; i++) {
+      if ($li[i].dataset.entryId === String(data.editing.entryId)) {
+        $li[i].remove();
+      }
+    }
+    for (let i = 0; i < data.logs.length; i++) {
+      if (data.logs[i].entryId === data.editing.entryId) {
+        data.logs.splice(i, 1);
+      }
+    }
+  }
+  writeData();
+  toggleNoLogs();
+  swapLogView('viewLogView');
+});
