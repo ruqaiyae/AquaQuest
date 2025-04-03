@@ -4,7 +4,7 @@ AquaQuest is a **frontend web application** designed for scuba diving enthusiast
 
 &nbsp;
 ## 🎬 Live Demo
-Check out the live version: [AquaQuest Demo](ruqaiyae.github.io/AquaQuest/)
+Check out the live version: [AquaQuest Demo](https://ruqaiyae.github.io/AquaQuest/)
 
 ### How it works
 Navigate AquaQuest effortlessly to find the best scuba diving locations worldwide.
